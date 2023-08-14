@@ -1,0 +1,12 @@
+/*
+Styling for the app.
+To find out more about styling go to https://dash.plotly.com/external-resources
+*/
+
+.main-tabs .main-tab {
+    background-color: var(--blue);
+}
+
+.main-tabs .main-tab-selected {
+    background-color: var(--lightblue);
+}
