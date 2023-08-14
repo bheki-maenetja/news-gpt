@@ -5,6 +5,11 @@ import dash_bootstrap_components as dbc
 
 # Standard Library Imports
 # Local Imports
+from user_interface.main_nav import main_tabs
+from user_interface.newsfeed import get_newsfeed
+from user_interface.analysis import get_analysis
+from user_interface.semantics import get_semantics
+from user_interface.newsbot import  get_newsbot
 
 # Global Variables
 app = Dash(
@@ -16,15 +21,38 @@ app = Dash(
     ]
 )
 
-app.title = "Lexical Analyser Manipulator and Extractor (LAME)"
+app.title = "NewsGPT"
 
 server = app.server
 
 # UI Layout
 ## Main App Layout
-app.layout = html.Div(id="main-container", children=[
-    html.H1("The start of something new..."),
-])
+app.layout = html.Div(
+    id="main-container",
+    className="main-container", 
+    children=[
+        html.H1("NewsGPT"),
+        main_tabs,
+        html.Div(id="section-container", className="section-container"),
+        html.Div(id='reload-handler-0', style={"display": "hidden"}),
+        html.Div(id='reload-handler-1', style={"display": "hidden"}),
+        html.Div(id='reload-handler-2', style={"display": "hidden"}),
+        html.Div(id='reload-handler-3', style={"display": "hidden"}),
+        html.Div(id='reload-handler-4', style={"display": "hidden"}),
+        html.Div(id='reload-handler-5', style={"display": "hidden"}),
+    ]
+)
+
+## Major Components
+def section_selector(s_name):
+    if s_name == "newsfeed":
+        return get_newsfeed()
+    elif s_name == "analysis":
+        return get_analysis()
+    elif s_name == "semantics":
+        return get_semantics()
+    elif s_name == "newsbot":
+        return get_newsbot()
 
 # Callback functions
 """
@@ -66,6 +94,30 @@ For more info on how callback functions work you can visit the following links:
     * https://dash.plotly.com/sharing-data-between-callbacks
     * https://dash.plotly.com/advanced-callbacks
 """
+## Page Refresh Callback
+@app.callback(
+    Output("section-container", "children"),
+    inputs=dict(
+        children=(
+            Input("reload-handler-0", "children"), 
+            Input("reload-handler-1", "children"), 
+            Input("reload-handler-2", "children"),
+            Input("reload-handler-3", "children"),
+            Input("reload-handler-4", "children"),
+            Input("reload-handler-5", "children"),      
+        ),
+        tab_value=State("main-tabs", "value"),
+    )
+)
+def refresh_page(tab_value, children):
+    return section_selector(tab_value)
+
+## Navigation Callbacks
+@app.callback(
+    Output("reload-handler-0", "children"),
+    Input("main-tabs", "value"),
+)
+def main_tabs_handler(value): return None
 
 # Running server
 if __name__ == "__main__":
