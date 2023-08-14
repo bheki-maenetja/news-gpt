@@ -1,0 +1,46 @@
+/*
+Styling for the app.
+To find out more about styling go to https://dash.plotly.com/external-resources
+*/
+
+/* Imports */
+@import "main_nav.css";
+
+/* Global Variables */
+:root {
+    --red: #E63946;
+    --pale: #F1FAEE;
+    --lightblue: #A8DADC;
+    --blue: #457B9D;
+    --darkblue: #1D3557;
+}
+
+/* Universal Styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    height: fit-content;
+}
+
+/* Containers */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: fit-content;
+    padding: 1em;
+    margin: 0 auto;
+    height: 100vh;
+    max-height: 100%;
+    background-color: var(--darkblue);
+}
+
+.section-container {
+    flex-grow: 1;
+    display: flex;
+    border: 1px solid purple;
+}
