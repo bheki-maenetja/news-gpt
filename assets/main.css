@@ -3,17 +3,18 @@ Styling for the app.
 To find out more about styling go to https://dash.plotly.com/external-resources
 */
 
-/* Imports */
-@import "main_nav.css";
 
 /* Global Variables */
 :root {
-    --red: #E63946;
-    --pale: #F1FAEE;
-    --lightblue: #A8DADC;
-    --blue: #457B9D;
-    --darkblue: #1D3557;
+    --darkred: #780000;
+    --red: #C1121F;
+    --pale: #FDF0D5;
+    --darkblue: #003049;
+    --lightblue: #669BBC;
 }
+
+/* Imports */
+@import "main_nav.css";
 
 /* Universal Styling */
 * {
@@ -32,15 +33,14 @@ body {
     flex-direction: column;
     width: 100%;
     min-height: fit-content;
-    padding: 1em;
+    padding: 0em;
     margin: 0 auto;
     height: 100vh;
     max-height: 100%;
-    background-color: var(--darkblue);
 }
 
 .section-container {
     flex-grow: 1;
     display: flex;
-    border: 1px solid purple;
+    max-height: 93.5vh;
 }
