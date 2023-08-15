@@ -2,7 +2,7 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
-main_tabs =  dcc.Tabs(
+main_tabs = dcc.Tabs(
     id="main-tabs",
     className="main-tabs",
     value="newsfeed",
@@ -31,5 +31,14 @@ main_tabs =  dcc.Tabs(
             label="NewsBot",
             value="newsbot",
         ),
+    ]
+)
+
+main_nav = html.Div(
+    id="main-nav",
+    className="main-nav",
+    children=[
+        html.H1("NewsGPT", className="nav-header"),
+        main_tabs,
     ]
 )
