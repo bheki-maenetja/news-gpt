@@ -50,5 +50,6 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     align-items: center;
     padding-left: 2em;
     margin: 0;
-    background-color: var(--pale);
+    background-color: black;
+    color: white;
 }
