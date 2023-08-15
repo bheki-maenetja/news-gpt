@@ -3,10 +3,52 @@ Styling for the app.
 To find out more about styling go to https://dash.plotly.com/external-resources
 */
 
+/* Containers */
+.main-nav {
+    display: flex;
+}
+
+/* Tabs */
+.main-tabs {
+    border: none;
+}
+
 .main-tabs .main-tab {
-    background-color: var(--blue);
+    height: 100%;
+    padding-left: 5em;
+    padding-right: 5em;
+    border: none;
+    background-color: var(--darkred);
+    color: white;
 }
 
 .main-tabs .main-tab-selected {
-    background-color: var(--lightblue);
+    background-color: var(--red);
+}
+
+.main-tabs .main-tab:last-child {
+    border: none;
+}
+
+.main-tabs .main-tab-selected:last-child {
+    border: none;
+}
+
+.main-tabs .main-tab-selected:hover {
+    background-color: var(--red);
+}
+
+.main-tabs .main-tab:not(.main-tab-selected):hover {
+    background-color: var(--pale);
+    color: var(--darkred);
+}
+
+/* Header */
+.nav-header {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 2em;
+    margin: 0;
+    background-color: var(--pale);
 }
