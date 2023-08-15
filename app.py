@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 
 # Standard Library Imports
 # Local Imports
-from user_interface.main_nav import main_tabs
+from user_interface.main_nav import main_nav
 from user_interface.newsfeed import get_newsfeed
 from user_interface.analysis import get_analysis
 from user_interface.semantics import get_semantics
@@ -31,8 +31,7 @@ app.layout = html.Div(
     id="main-container",
     className="main-container", 
     children=[
-        html.H1("NewsGPT"),
-        main_tabs,
+        main_nav,
         html.Div(id="section-container", className="section-container"),
         html.Div(id='reload-handler-0', style={"display": "hidden"}),
         html.Div(id='reload-handler-1', style={"display": "hidden"}),
