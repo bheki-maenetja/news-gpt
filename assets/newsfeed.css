@@ -10,27 +10,63 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 }
 
 .main-article-feed {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.newsfeed-articles {
     flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 60%;
-    padding: 0.2em;
-    background-color: var(--darkblue);
     overflow-y: scroll;
+    background-color: var(--darkblue);
+}
+
+.newsfeed-params {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 2em;
+    background-color: var(--gray);
 }
 
 .newsfeed-nlp {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 50%;
     background-color: var(--lightblue);
+}
+
+/* Headlines */
+.newsfeed-params > h2 {
+    width: 100%;
+    text-align: center;
+    color: white;
 }
 
 /* News Cards */
 .news-card {
-    height: fit-content;
-    width: fit-content;
-    max-width: 20%;
+    height: 250px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     margin: 0.5em 0.1em;
+    background-image: url("/assets/placeholder.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.news-card-headline {
+    padding: 0.5em;
+    margin: 0;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+}
+
+/* Form Elements */
+.category-select, .country-select {
+    width: 40%;
 }
