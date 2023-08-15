@@ -2,3 +2,35 @@
 Styling for the app.
 To find out more about styling go to https://dash.plotly.com/external-resources
 */
+
+/* Containers */
+.newsfeed-section {
+    flex-grow: 1;
+    display: flex;
+}
+
+.main-article-feed {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 60%;
+    padding: 0.2em;
+    background-color: var(--darkblue);
+    overflow-y: scroll;
+}
+
+.newsfeed-nlp {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background-color: var(--lightblue);
+}
+
+/* News Cards */
+.news-card {
+    height: fit-content;
+    width: fit-content;
+    max-width: 20%;
+    margin: 0.5em 0.1em;
+}
