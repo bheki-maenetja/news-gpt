@@ -76,7 +76,86 @@ def get_newsfeed(headlines):
                 id="newsfeed-nlp",
                 className="newsfeed-nlp",
                 children=[
-                    html.H2("Summariser and chatbot"),
+                    html.Div(
+                        id="article-summariser",
+                        className="article-summariser",
+                        children=[
+                            html.Div(
+                                id="article-summariser-output",
+                                className="article-summariser-output",
+                                children=[
+                                    dcc.Loading(
+                                        children=[
+                                            dbc.Textarea(
+                                                id="article-summariser-output-content",
+                                                className="article-summariser-output-content",
+                                                value="",
+                                                draggable=False,
+                                                readOnly=True,
+                                                placeholder="Create a summary of today's headlines"
+                                            ),
+                                        ]
+                                    ),
+                                ]
+                            ),
+                            html.Div(
+                                id="article-summariser-params",
+                                className="article-summariser-params",
+                                children=[
+                                    dcc.Dropdown(
+                                        id="summary-method-select",
+                                        className="summary-method-select",
+                                        multi=False,
+                                        clearable=False,
+                                        placeholder="Select a Summary Format",
+                                        value="",
+                                        options=[
+                                            {
+                                                "label": "Single Paragraph",
+                                                "value": "1-para"
+                                            },
+                                            {
+                                                "label": "Two Paragraphs",
+                                                "value": "2-para"
+                                            },
+                                            {
+                                                "label": "Three Paragraphs",
+                                                "value": "3-para"
+                                            },
+                                            {
+                                                "label": "Short Essay",
+                                                "value": "s-essay"
+                                            },
+                                            {
+                                                "label": "Long Essay",
+                                                "value": "l-essay",
+                                            },
+                                            {
+                                                "label": "Short List",
+                                                "value": "s-list",
+                                            },
+                                            {
+                                                "label": "Long List",
+                                                "value": "l-list",
+                                            },
+                                        ]
+                                    ),
+                                    html.Button(
+                                        id="article-summariser-btn",
+                                        className="article-summariser-btn",
+                                        children="Create Summary",
+                                    )
+                                ]
+                            )
+                        ],
+                    ),
+                    html.Div(
+                        id="headline-bot",
+                        className="headline-bot",
+                        children=[
+                            "You"
+                        ],
+                    ),
                 ]
             )
         ]
