@@ -48,6 +48,7 @@ app.layout = html.Div(
 def section_selector(s_name):
     if s_name == "newsfeed":
         headlines = get_top_headlines()
+        
         if headlines.get("status") == "ok":
             return get_newsfeed(headlines["articles"])
         else:
