@@ -18,6 +18,30 @@ def get_news_card(headline, img_url):
         style={"backgroundImage": f"url({img_url})"}
     )
 
+def headline_bot_message(message, is_user=True, is_temp=False):
+    if is_temp:
+        return html.Div(
+            id="hl-bot-temp-message",
+            className="hl-bot-message bot",
+            children=[
+                dbc.Spinner(
+                    color="#003049",
+                    type="grow",
+                    spinner_style={"marginRight": "0.5em"},
+                )
+                for _ in range(3)
+            ]
+        )
+    return html.Div(
+        className=f"hl-bot-message {'user' if is_user else 'bot'}",
+        children=[
+            html.Div(
+                className=f"hl-bot-message-content {'user' if is_user else 'bot'}",
+                children=message,
+            )
+        ]
+    )
+
 def get_newsfeed(headlines):
     return html.Div(
         id="newsfeed-section",
@@ -81,10 +105,13 @@ def get_newsfeed(headlines):
                         className="headline-bot",
                         children=[
                             html.Div(
-                                id="headling-bot-message-space",
+                                id="headline-bot-message-space",
                                 className="headline-bot-message-space",
                                 children=[
-
+                                    html.Div([], style={"flexGrow": "1"}),
+                                    headline_bot_message("Bot message", False),
+                                    headline_bot_message("User message"),
+                                    headline_bot_message("", is_temp=True),
                                 ]
                             ),
                             html.Div(
