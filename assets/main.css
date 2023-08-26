@@ -44,5 +44,5 @@ body {
 .section-container {
     flex-grow: 1;
     display: flex;
-    max-height: 93.5vh;
+    max-height: 93.1vh;
 }
