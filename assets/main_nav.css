@@ -6,6 +6,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 /* Containers */
 .main-nav {
     display: flex;
+    border-bottom: 0.2em solid var(--pale);
 }
 
 /* Tabs */
@@ -18,12 +19,13 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     padding-left: 5em;
     padding-right: 5em;
     border: none;
-    background-color: var(--darkred);
+    background-color: var(--gray);
     color: white;
 }
 
 .main-tabs .main-tab-selected {
-    background-color: var(--red);
+    background-color: var(--pale);
+    color: var(--darkblue);
 }
 
 .main-tabs .main-tab:last-child {
@@ -35,12 +37,12 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 }
 
 .main-tabs .main-tab-selected:hover {
-    background-color: var(--red);
+    background-color: var(--pale);
 }
 
 .main-tabs .main-tab:not(.main-tab-selected):hover {
-    background-color: var(--pale);
-    color: var(--darkred);
+    background-color: var(--lightgray);
+    color: var(--pale);
 }
 
 /* Header */
