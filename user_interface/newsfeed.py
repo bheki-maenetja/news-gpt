@@ -77,6 +77,40 @@ def get_newsfeed(headlines):
                 className="newsfeed-nlp",
                 children=[
                     html.Div(
+                        id="headline-bot",
+                        className="headline-bot",
+                        children=[
+                            html.Div(
+                                id="headling-bot-message-space",
+                                className="headline-bot-message-space",
+                                children=[
+
+                                ]
+                            ),
+                            html.Div(
+                                id="headline-bot-params",
+                                className="headline-bot-params",
+                                children=[
+                                    dbc.Input(
+                                        id="headline-bot-query",
+                                        className="headline-bot-query",
+                                        placeholder="Enter your question here",
+                                        value="",
+                                        persistence=False,
+                                    ),
+                                    html.Button(
+                                        id="headline-bot-btn",
+                                        className="headline-bot-btn",
+                                        disabled=False,
+                                        children=[
+                                            html.I(className="bi bi-send-fill"),
+                                        ]
+                                    )
+                                ]
+                            ),
+                        ],
+                    ),
+                    html.Div(
                         id="article-summariser",
                         className="article-summariser",
                         children=[
@@ -102,25 +136,19 @@ def get_newsfeed(headlines):
                                 id="article-summariser-params",
                                 className="article-summariser-params",
                                 children=[
-                                    dcc.Dropdown(
+                                    dbc.Select(
                                         id="summary-method-select",
                                         className="summary-method-select",
-                                        multi=False,
-                                        clearable=False,
                                         placeholder="Select a Summary Format",
                                         value="",
                                         options=[
                                             {
                                                 "label": "Single Paragraph",
-                                                "value": "1-para"
+                                                "value": "1-para",
                                             },
                                             {
-                                                "label": "Two Paragraphs",
-                                                "value": "2-para"
-                                            },
-                                            {
-                                                "label": "Three Paragraphs",
-                                                "value": "3-para"
+                                                "label": "Multiple Paragraphs",
+                                                "value": "multi-para",
                                             },
                                             {
                                                 "label": "Short Essay",
@@ -138,6 +166,22 @@ def get_newsfeed(headlines):
                                                 "label": "Long List",
                                                 "value": "l-list",
                                             },
+                                            {
+                                                "label": "Haiku",
+                                                "value": "haiku",
+                                            },
+                                            {
+                                                "label": "Sonnet",
+                                                "value": "sonnet",
+                                            },
+                                            {
+                                                "label": "Rap",
+                                                "value": "rap",
+                                            },
+                                            {
+                                                "label": "Shakespeare",
+                                                "value": "shakespeare",
+                                            },
                                         ]
                                     ),
                                     html.Button(
@@ -147,13 +191,6 @@ def get_newsfeed(headlines):
                                     )
                                 ]
                             )
-                        ],
-                    ),
-                    html.Div(
-                        id="headline-bot",
-                        className="headline-bot",
-                        children=[
-                            "You"
                         ],
                     ),
                 ]
