@@ -29,7 +29,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 2em;
-    background-color: var(--gray);
+    background-color: var(--red);
 }
 
 .newsfeed-nlp {
@@ -44,7 +44,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     display: flex;
     flex-direction: column;
     padding: 2em;
-    background-color: var(--lightblue);
+    background-color: var(--red);
 }
 
 .article-summariser-output {
@@ -63,7 +63,13 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 .headline-bot {
     height: 50%;
     display: flex;
-    background-color: pink;
+    flex-direction: column;
+}
+
+.headline-bot-message-space {
+    display: flex;
+    flex-grow: 1;
+    background-color: var(--lightblue);
 }
 
 /* Headlines */
@@ -118,10 +124,43 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     align-items: center;
     border-radius: 0.4em;
     background-color: rgba(0,0,0,0.2);
+    background-color: var(--lightgray);
 }
 
 #summary-method-select {
     width: 60%;
+}
+
+.headline-bot-params {
+    display: flex;
+    border-top: 0.25em solid var(--gray);
+}
+
+.headline-bot-query {
+    flex-grow: 1;
+    padding: 1em;
+    border: none;
+    border-radius: 0em;
+    background-color: var(--pale);
+}
+
+.headline-bot-query:focus {
+    background-color: var(--pale);
+    border: none;
+    box-shadow: none;
+}
+
+.headline-bot-btn {
+    width: 25%;
+    border: none;
+    background-color: var(--gray);
+    color: white;
+    font-size: 2em;
+}
+
+.headline-bot-btn:hover {
+    background-color: var(--lightblue);
+    color: var(--darkblue);
 }
 
 /* Buttons */
