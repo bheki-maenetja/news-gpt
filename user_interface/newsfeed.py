@@ -2,6 +2,28 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+the_link = "https://www.cnn.com/"
+
+article_modal = dbc.Modal(
+    keyboard=False,
+    backdrop="static",
+    is_open=False,
+    children=[
+        dbc.ModalHeader(
+            children=[
+                dbc.ModalTitle("Article Heading")
+            ]
+        ),
+        dbc.ModalBody(
+            children=[
+                html.Iframe(
+                    src=the_link
+                )
+            ]
+        )
+    ]
+)
+
 def get_news_card(headline, img_url):
     formatted_hl = headline if len(headline) < 101 else headline[:101] + "..."
 
@@ -47,6 +69,7 @@ def get_newsfeed(headlines):
         id="newsfeed-section",
         className="newsfeed-section",
         children=[
+            article_modal,
             html.Div(
                 id="main-article-feed",
                 className="main-article-feed",
