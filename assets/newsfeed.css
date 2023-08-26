@@ -69,10 +69,13 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 .headline-bot-message-space {
     display: flex;
     flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
     background-color: var(--lightblue);
 }
 
-/* Headlines */
+/* Headings */
 .newsfeed-params > h2 {
     width: 100%;
     text-align: center;
@@ -97,6 +100,39 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     margin: 0;
     background-color: rgba(0,0,0,0.7);
     color: white;
+}
+
+/* Messages */
+.hl-bot-message {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 1em;
+}
+
+.hl-bot-message.user {
+    justify-content: flex-start;
+}
+
+.hl-bot-message.bot {
+    justify-content: flex-end;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.hl-bot-message-content {
+    padding: 1em;
+    max-width: 25%;
+    color: white;
+}
+
+.hl-bot-message-content.user {
+    border-radius: 0em 1em 0em 1em;
+    background-color: var(--darkblue);
+}
+
+.hl-bot-message-content.bot {
+    border-radius: 1em 0em 1em 0em;
+    background-color: var(--lightblue);
 }
 
 /* Form Elements */
