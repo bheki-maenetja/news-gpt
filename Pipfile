@@ -9,6 +9,7 @@ dash-bootstrap-components = "*"
 openai = "*"
 python-dotenv = "*"
 newsapi-python = "*"
+pandas = "*"
 
 [dev-packages]
 
