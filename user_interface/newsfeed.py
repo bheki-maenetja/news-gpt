@@ -64,7 +64,7 @@ def headline_bot_message(message, is_user=True, is_temp=False):
         ]
     )
 
-def get_newsfeed(headlines):
+def get_newsfeed(articles):
     return html.Div(
         id="newsfeed-section",
         className="newsfeed-section",
@@ -113,8 +113,8 @@ def get_newsfeed(headlines):
                         id="newsfeed-articles",
                         className="newsfeed-articles",
                         children=[
-                            get_news_card(h["title"], h["urlToImage"])
-                            for h in headlines
+                            get_news_card(r["title"], r["urlToImage"])
+                            for _, r in articles.iterrows()
                         ]
                     )
                 ]

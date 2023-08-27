@@ -11,7 +11,7 @@ from user_interface.analysis import get_analysis
 from user_interface.semantics import get_semantics
 from user_interface.newsbot import  get_newsbot
 
-from articles.articles import get_top_headlines
+from articles.articles import get_articles, load_articles
 
 # Global Variables
 app = Dash(
@@ -47,12 +47,9 @@ app.layout = html.Div(
 ## Major Components
 def section_selector(s_name):
     if s_name == "newsfeed":
-        headlines = get_top_headlines()
-        
-        if headlines.get("status") == "ok":
-            return get_newsfeed(headlines["articles"])
-        else:
-            return get_newsfeed([])
+        get_articles()
+        articles = load_articles()
+        return get_newsfeed(articles)
     elif s_name == "analysis":
         return get_analysis()
     elif s_name == "semantics":
