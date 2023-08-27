@@ -2,39 +2,22 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
-the_link = "https://www.cnn.com/"
-
-article_modal = dbc.Modal(
-    keyboard=False,
-    backdrop="static",
-    is_open=False,
-    children=[
-        dbc.ModalHeader(
-            children=[
-                dbc.ModalTitle("Article Heading")
-            ]
-        ),
-        dbc.ModalBody(
-            children=[
-                html.Iframe(
-                    src=the_link
-                )
-            ]
-        )
-    ]
-)
-
-def get_news_card(headline, img_url):
+def get_news_card(headline, art_url, img_url, description):
     formatted_hl = headline if len(headline) < 101 else headline[:101] + "..."
 
-    return html.Div(
+    return html.A(
         id="",
         className="news-card",
+        href=art_url,
+        target="_blank",
         children=[
             html.P(
-                id="",
                 className="news-card-headline",
                 children=formatted_hl,
+            ),
+            html.P(
+                className="news-card-description",
+                children=description,
             )
         ],
         style={"backgroundImage": f"url({img_url})"}
@@ -69,7 +52,6 @@ def get_newsfeed(articles):
         id="newsfeed-section",
         className="newsfeed-section",
         children=[
-            article_modal,
             html.Div(
                 id="main-article-feed",
                 className="main-article-feed",
@@ -113,7 +95,12 @@ def get_newsfeed(articles):
                         id="newsfeed-articles",
                         className="newsfeed-articles",
                         children=[
-                            get_news_card(r["title"], r["urlToImage"])
+                            get_news_card(
+                                r["title"], 
+                                r["url"], 
+                                r["urlToImage"], 
+                                r["description"],
+                            )
                             for _, r in articles.iterrows()
                         ]
                     )

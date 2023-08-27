@@ -93,6 +93,18 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     background-image: url("/assets/placeholder.jpg");
     background-size: cover;
     background-position: center;
+    text-decoration: none;
+}
+
+.news-card:hover > .news-card-headline {
+    display: none;
+}
+
+.news-card:hover > .news-card-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .news-card-headline {
@@ -100,6 +112,16 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     margin: 0;
     background-color: rgba(0,0,0,0.7);
     color: white;
+}
+
+.news-card-description {
+    display: none;
+    flex-grow: 1;
+    padding: 0.5em;
+    margin: 0;
+    background-color: var(--pale);
+    color: var(--darkblue);
+    text-decoration: none;
 }
 
 /* Messages */
