@@ -6,12 +6,12 @@ import dash_bootstrap_components as dbc
 # Standard Library Imports
 # Local Imports
 from user_interface.main_nav import main_nav
-from user_interface.newsfeed import get_newsfeed
+from user_interface.newsfeed import get_newsfeed, get_news_cards
 from user_interface.analysis import get_analysis
 from user_interface.semantics import get_semantics
 from user_interface.newsbot import  get_newsbot
 
-from articles.articles import get_articles, load_articles
+from articles.articles import get_articles, load_articles, get_cat_and_country, set_cat_and_country
 
 # Global Variables
 app = Dash(
@@ -41,15 +41,18 @@ app.layout = html.Div(
         html.Div(id='reload-handler-3', style={"display": "hidden"}),
         html.Div(id='reload-handler-4', style={"display": "hidden"}),
         html.Div(id='reload-handler-5', style={"display": "hidden"}),
+        html.Div(id='dummy', style={"display": "hidden"}),
     ]
 )
 
 ## Major Components
+### Section Selector
 def section_selector(s_name):
     if s_name == "newsfeed":
-        get_articles()
+        category, country = get_cat_and_country()
+        get_articles(category, country)
         articles = load_articles()
-        return get_newsfeed(articles)
+        return get_newsfeed(articles, category, country)
     elif s_name == "analysis":
         return get_analysis()
     elif s_name == "semantics":
@@ -121,6 +124,20 @@ def refresh_page(tab_value, children):
     Input("main-tabs", "value"),
 )
 def main_tabs_handler(value): return None
+
+## Newsfeed Callbacks
+@app.callback(
+    Output("newsfeed-articles", "children"),
+    Input("category-select", "value"),
+    Input("country-select", "value"),
+    supress_callback_exceptions=True,
+    prevent_initial_call=True,
+)
+def category_country_handler(category, country):
+    get_articles(category, country)
+    new_articles = load_articles()
+    set_cat_and_country(category, country)
+    return get_news_cards(new_articles)
 
 # Running server
 if __name__ == "__main__":
