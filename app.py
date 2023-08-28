@@ -13,6 +13,8 @@ from user_interface.newsbot import  get_newsbot
 
 from articles.articles import get_articles, load_articles, get_cat_and_country, set_cat_and_country
 
+from nlp.summariser import summarise_headlines
+
 # Global Variables
 app = Dash(
     name=__name__, 
@@ -138,6 +140,17 @@ def category_country_handler(category, country):
     new_articles = load_articles()
     set_cat_and_country(category, country)
     return get_news_cards(new_articles)
+
+@app.callback(
+    Output("dummy", "children"),
+    State("summary-method-select", "value"),
+    Input("article-summariser-btn", "n_clicks"),
+    supress_callback_exceptions=True,
+    prevent_initial_call=True,
+)
+def headline_summary_handler(sum_format, n_clicks):
+    if n_clicks is not None and sum_format != "":
+        summarise_headlines("Headline 1+Headlne 2+Headline 3", sum_format)
 
 # Running server
 if __name__ == "__main__":
