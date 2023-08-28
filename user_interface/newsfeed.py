@@ -2,7 +2,7 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
-def get_news_card(headline, art_url, img_url, description):
+def news_card(headline, art_url, img_url, description):
     formatted_hl = headline if len(headline) < 101 else headline[:101] + "..."
 
     return html.A(
@@ -22,6 +22,17 @@ def get_news_card(headline, art_url, img_url, description):
         ],
         style={"backgroundImage": f"url({img_url})"}
     )
+
+def get_news_cards(articles):
+    return [
+        news_card(
+            r["title"], 
+            r["url"], 
+            r["urlToImage"], 
+            r["description"],
+        )
+        for _, r in articles.iterrows()
+    ]
 
 def headline_bot_message(message, is_user=True, is_temp=False):
     if is_temp:
@@ -47,7 +58,7 @@ def headline_bot_message(message, is_user=True, is_temp=False):
         ]
     )
 
-def get_newsfeed(articles):
+def get_newsfeed(articles, category, country):
     return html.Div(
         id="newsfeed-section",
         className="newsfeed-section",
@@ -65,7 +76,7 @@ def get_newsfeed(articles):
                                 id="category-select",
                                 class_name="category-select",
                                 placeholder="Select a News Category",
-                                value=None,
+                                value=category,
                                 persistence=False,
                                 options=[
                                     {"label": "General", "value": "general"},
@@ -81,7 +92,7 @@ def get_newsfeed(articles):
                                 id="country-select",
                                 class_name="country-select",
                                 placeholder="Select a Country",
-                                value=None,
+                                value=country,
                                 persistence=False,
                                 options=[
                                     {"label": "United States", "value": "us"},
@@ -94,15 +105,7 @@ def get_newsfeed(articles):
                     html.Div(
                         id="newsfeed-articles",
                         className="newsfeed-articles",
-                        children=[
-                            get_news_card(
-                                r["title"], 
-                                r["url"], 
-                                r["urlToImage"], 
-                                r["description"],
-                            )
-                            for _, r in articles.iterrows()
-                        ]
+                        children=get_news_cards(articles),
                     )
                 ]
             ),
