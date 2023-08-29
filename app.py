@@ -142,7 +142,7 @@ def category_country_handler(category, country):
     return get_news_cards(new_articles)
 
 @app.callback(
-    Output("dummy", "children"),
+    Output("article-summariser-output-content", "value"),
     State("summary-method-select", "value"),
     Input("article-summariser-btn", "n_clicks"),
     supress_callback_exceptions=True,
@@ -150,7 +150,9 @@ def category_country_handler(category, country):
 )
 def headline_summary_handler(sum_format, n_clicks):
     if n_clicks is not None and sum_format != "":
-        summarise_headlines("Headline 1+Headlne 2+Headline 3", sum_format)
+        headlines = load_articles()
+        summary = summarise_headlines(headlines, sum_format)
+        return summary
 
 # Running server
 if __name__ == "__main__":
