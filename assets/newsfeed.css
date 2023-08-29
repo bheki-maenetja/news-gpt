@@ -20,6 +20,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: flex-start;
     overflow-y: scroll;
     background-color: var(--darkblue);
 }
@@ -51,13 +52,17 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    border-radius: 1em;
     margin-bottom: 1em;
+    background-color: var(--pale);
 }
 
 .article-summariser-output > * {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    border-radius: 1em;
+    background-color: var(--pale);
 }
 
 .headline-bot {
@@ -173,6 +178,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     overflow-y: scroll;
     background-color: var(--pale);
     resize: none;
+    border-radius: 1em;
 }
 
 .article-summariser-output-content:focus {
@@ -215,6 +221,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     box-shadow: none;
 }
 
+/* Buttons */
 .headline-bot-btn {
     width: 25%;
     border: none;
@@ -228,7 +235,6 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     color: var(--darkblue);
 }
 
-/* Buttons */
 .article-summariser-btn {
     flex-grow: 0;
     width: 18%;
@@ -237,6 +243,18 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     border-radius: 0.5em;
     background-color: var(--red);
     color: var(--pale);
+}
+
+.article-summariser-btn.disabled {
+    background-color: var(--lightgray);
+    color: var(--gray);
+    border-color: var(--gray);
+}
+
+.article-summariser-btn.disabled:hover {
+    background-color: var(--lightgray);
+    color: var(--gray);
+    border-color: var(--gray);
 }
 
 .article-summariser-btn:hover {

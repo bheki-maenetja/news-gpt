@@ -159,6 +159,7 @@ def get_newsfeed(articles, category, country):
                                 className="article-summariser-output",
                                 children=[
                                     dcc.Loading(
+                                        color="#780000",
                                         children=[
                                             dbc.Textarea(
                                                 id="article-summariser-output-content",
@@ -230,17 +231,21 @@ def get_newsfeed(articles, category, country):
                                     ),
                                     html.Button(
                                         id="article-summariser-btn",
-                                        className="article-summariser-btn",
+                                        disabled=True,
+                                        className="article-summariser-btn disabled",
                                         children="Summarise",
                                     ),
                                     html.Button(
                                         id="download-summary-btn",
-                                        className="article-summariser-btn",
+                                        disabled=True,
+                                        className="article-summariser-btn disabled",
                                         children="Download",
                                     ),
+                                    dcc.Download(id="download-headline-summary"),
                                     html.Button(
                                         id="clear-summary-btn",
-                                        className="article-summariser-btn",
+                                        disabled=True,
+                                        className="article-summariser-btn disabled",
                                         children="Clear",
                                     ),
                                 ]
