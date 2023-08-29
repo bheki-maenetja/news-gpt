@@ -192,7 +192,8 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 }
 
 #summary-method-select {
-    width: 60%;
+    width: 35%;
+    text-align: center;
 }
 
 .headline-bot-params {
@@ -230,12 +231,12 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 /* Buttons */
 .article-summariser-btn {
     flex-grow: 0;
-    width: 25%;
+    width: 18%;
     padding: 0.25em;
     border: 0.15em solid var(--darkred);
     border-radius: 0.5em;
     background-color: var(--red);
-    color: var(--pale)
+    color: var(--pale);
 }
 
 .article-summariser-btn:hover {

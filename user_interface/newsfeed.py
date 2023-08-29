@@ -215,6 +215,10 @@ def get_newsfeed(articles, category, country):
                                                 "value": "sonnet",
                                             },
                                             {
+                                                "label": "Limerick",
+                                                "value": "limerick",
+                                            },
+                                            {
                                                 "label": "Rap",
                                                 "value": "rap",
                                             },
@@ -227,8 +231,18 @@ def get_newsfeed(articles, category, country):
                                     html.Button(
                                         id="article-summariser-btn",
                                         className="article-summariser-btn",
-                                        children="Create Summary",
-                                    )
+                                        children="Summarise",
+                                    ),
+                                    html.Button(
+                                        id="download-summary-btn",
+                                        className="article-summariser-btn",
+                                        children="Download",
+                                    ),
+                                    html.Button(
+                                        id="clear-summary-btn",
+                                        className="article-summariser-btn",
+                                        children="Clear",
+                                    ),
                                 ]
                             )
                         ],
