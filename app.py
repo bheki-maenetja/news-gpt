@@ -134,6 +134,7 @@ def main_tabs_handler(value): return None
     Input("country-select", "value"),
     supress_callback_exceptions=True,
     prevent_initial_call=True,
+    allow_duplicate=True,
 )
 def category_country_handler(category, country):
     get_articles(category, country)
@@ -145,14 +146,52 @@ def category_country_handler(category, country):
     Output("article-summariser-output-content", "value"),
     State("summary-method-select", "value"),
     Input("article-summariser-btn", "n_clicks"),
+    Input("clear-summary-btn", "n_clicks"),
     supress_callback_exceptions=True,
     prevent_initial_call=True,
+    allow_duplicate=True,
 )
-def headline_summary_handler(sum_format, n_clicks):
-    if n_clicks is not None and sum_format != "":
-        headlines = load_articles()
-        summary = summarise_headlines(headlines, sum_format)
-        return summary
+def headline_summary_handler(sum_format, sum_clicks, clear_clicks):
+    if (sum_clicks is not None or clear_clicks is not None) and sum_format != "":
+        triggered_id = ctx.triggered_id
+        if triggered_id == "article-summariser-btn":
+            headlines = load_articles()
+            if headlines.empty:
+                return "NO ARTICLES — NOTHING TO SUMMARISE"
+            summary = summarise_headlines(headlines, sum_format)
+            return summary
+        elif triggered_id == "clear-summary-btn":
+            return ""
+
+@app.callback(
+    Output("article-summariser-btn", "disabled"),
+    Output("article-summariser-btn", "className"),
+    Output("download-summary-btn", "disabled"),
+    Output("download-summary-btn", "className"),
+    Output("clear-summary-btn", "disabled"),
+    Output("clear-summary-btn", "className"),
+    Input("summary-method-select", "value"),
+    Input("article-summariser-output-content", "value"),
+)
+def summary_method_select_handler(sum_format, summary_content):
+    return (
+        sum_format == "",
+        f"article-summariser-btn {'disabled' if sum_format == '' else ''}",
+        summary_content == "",
+        f"article-summariser-btn {'disabled' if summary_content == '' else ''}",
+        summary_content == "",
+        f"article-summariser-btn {'disabled' if summary_content == '' else ''}",
+    )
+
+@app.callback(
+    Output("download-headline-summary", "data"),
+    State("article-summariser-output-content", "value"),
+    Input("download-summary-btn", "n_clicks"),
+)
+def download_headline_summary_handler(summary_content, n_clicks):
+    print(n_clicks)
+    if n_clicks is not None:
+        return dict(content=summary_content, filename="Headline Summary.txt")
 
 # Running server
 if __name__ == "__main__":
