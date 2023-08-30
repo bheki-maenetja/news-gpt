@@ -58,7 +58,7 @@ def headline_bot_message(message, is_user=True, is_temp=False):
         ]
     )
 
-def get_newsfeed(articles, category, country):
+def get_newsfeed(articles, category, country, initial_message):
     return html.Div(
         id="newsfeed-section",
         className="newsfeed-section",
@@ -122,9 +122,7 @@ def get_newsfeed(articles, category, country):
                                 className="headline-bot-message-space",
                                 children=[
                                     html.Div([], style={"flexGrow": "1"}),
-                                    headline_bot_message("Bot message", False),
-                                    headline_bot_message("User message"),
-                                    headline_bot_message("", is_temp=True),
+                                    headline_bot_message(initial_message, False),
                                 ]
                             ),
                             html.Div(
@@ -140,8 +138,8 @@ def get_newsfeed(articles, category, country):
                                     ),
                                     html.Button(
                                         id="headline-bot-btn",
-                                        className="headline-bot-btn",
-                                        disabled=False,
+                                        className="headline-bot-btn disabled",
+                                        disabled=True,
                                         children=[
                                             html.I(className="bi bi-send-fill"),
                                         ]
