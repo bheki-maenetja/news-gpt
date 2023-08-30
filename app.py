@@ -13,7 +13,7 @@ from user_interface.newsbot import  get_newsbot
 
 from articles.articles import get_articles, load_articles, get_cat_and_country, set_cat_and_country
 
-from nlp.summariser import summarise_headlines, headline_chatbot
+from nlp.nlp import summarise_headlines, headline_chatbot
 
 # Global Variables
 app = Dash(
