@@ -148,7 +148,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 
 .hl-bot-message-content {
     padding: 1em;
-    max-width: 25%;
+    max-width: 40%;
     color: white;
 }
 
@@ -225,14 +225,19 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 .headline-bot-btn {
     width: 25%;
     border: none;
-    background-color: var(--gray);
-    color: white;
+    background-color: var(--darkblue);
+    color: var(--lightblue);
     font-size: 2em;
 }
 
 .headline-bot-btn:hover {
     background-color: var(--lightblue);
     color: var(--darkblue);
+}
+
+.headline-bot-btn.disabled {
+    background-color: var(--lightgray);
+    color: var(--gray);
 }
 
 .article-summariser-btn {
@@ -245,6 +250,12 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     color: var(--pale);
 }
 
+.article-summariser-btn:hover {
+    background-color: var(--pale);
+    color: var(--darkred);
+    border-color: var(--red);
+}
+
 .article-summariser-btn.disabled {
     background-color: var(--lightgray);
     color: var(--gray);
@@ -255,10 +266,4 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     background-color: var(--lightgray);
     color: var(--gray);
     border-color: var(--gray);
-}
-
-.article-summariser-btn:hover {
-    background-color: var(--pale);
-    color: var(--darkred);
-    border-color: var(--red);
 }
