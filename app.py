@@ -6,14 +6,14 @@ import dash_bootstrap_components as dbc
 # Standard Library Imports
 # Local Imports
 from user_interface.main_nav import main_nav
-from user_interface.newsfeed import get_newsfeed, get_news_cards
+from user_interface.newsfeed import get_newsfeed, get_news_cards, headline_bot_message
 from user_interface.analysis import get_analysis
 from user_interface.semantics import get_semantics
 from user_interface.newsbot import  get_newsbot
 
 from articles.articles import get_articles, load_articles, get_cat_and_country, set_cat_and_country
 
-from nlp.summariser import summarise_headlines
+from nlp.summariser import summarise_headlines, headline_chatbot
 
 # Global Variables
 app = Dash(
@@ -29,12 +29,15 @@ app.title = "NewsGPT"
 
 server = app.server
 
+INITIAL_HL_BOT_MESSAGE = "Ask me anything and I'll use today's headlines to find the answer."
+
 # UI Layout
 ## Main App Layout
 app.layout = html.Div(
     id="main-container",
     className="main-container", 
     children=[
+        dcc.Store(id="headline-bot-query-temp"),
         main_nav,
         html.Div(id="section-container", className="section-container"),
         html.Div(id='reload-handler-0', style={"display": "hidden"}),
@@ -54,7 +57,7 @@ def section_selector(s_name):
         category, country = get_cat_and_country()
         get_articles(category, country)
         articles = load_articles()
-        return get_newsfeed(articles, category, country)
+        return get_newsfeed(articles, category, country, INITIAL_HL_BOT_MESSAGE)
     elif s_name == "analysis":
         return get_analysis()
     elif s_name == "semantics":
@@ -128,13 +131,13 @@ def refresh_page(tab_value, children):
 def main_tabs_handler(value): return None
 
 ## Newsfeed Callbacks
+### Article Feed
 @app.callback(
     Output("newsfeed-articles", "children"),
     Input("category-select", "value"),
     Input("country-select", "value"),
     supress_callback_exceptions=True,
     prevent_initial_call=True,
-    allow_duplicate=True,
 )
 def category_country_handler(category, country):
     get_articles(category, country)
@@ -142,12 +145,64 @@ def category_country_handler(category, country):
     set_cat_and_country(category, country)
     return get_news_cards(new_articles)
 
+### Headline Chatbot
+@app.callback(
+    Output("headline-bot-btn", "disabled"),
+    Output("headline-bot-btn", "className"),
+    Input("headline-bot-query", "value"),
+    suppress_callback_exceptions=True,
+    prevent_initial_call=True,
+)
+def headline_bot_query_handler(query):
+    if query.strip() != "":
+        return False, "headline-bot-btn"
+    return True, "headline-bot-btn disabled"
+
+@app.callback(
+    Output("headline-bot-message-space", "children"),
+    Output("headline-bot-query-temp", "data"),
+    Output("headline-bot-query", "value"),
+    State("headline-bot-query", "value"),
+    Input("headline-bot-btn", "n_clicks"),
+    Input("headline-bot-message-space", "children"),
+    suppress_callback_exceptions=True,
+    prevent_initial_call=True,
+)
+def headline_bot_user_message_handler(query, n_clicks, current_state):
+    if n_clicks is None: return current_state, "", query
+    user_message = headline_bot_message(query)
+    temp_message = headline_bot_message(query, False, True)
+    return current_state + [user_message, temp_message], query, ""
+
+@app.callback(
+    Output("hl-bot-temp-message", "children"),
+    Output("hl-bot-temp-message", "id"),
+    State("headline-bot-query-temp", "data"),
+    Input("headline-bot-message-space", "children"),
+    suppress_callback_exceptions=True,
+)
+def headline_bot_system_message_handler(query, current_state):
+    headlines = load_articles()
+    if headlines.empty:
+        return html.Div(
+            className="hl-bot-message-content bot",
+            children="NO ARTICLES AVAILABLE — PLEASE TRY AGAIN",
+        ), ""
+
+    new_message = headline_chatbot(headlines, query)
+
+    return html.Div(
+        className="hl-bot-message-content bot",
+        children=new_message,
+    ), ""
+
+### Headline Summariser
 @app.callback(
     Output("article-summariser-output-content", "value"),
     State("summary-method-select", "value"),
     Input("article-summariser-btn", "n_clicks"),
     Input("clear-summary-btn", "n_clicks"),
-    supress_callback_exceptions=True,
+    suppress_callback_exceptions=True,
     prevent_initial_call=True,
     allow_duplicate=True,
 )
@@ -189,7 +244,6 @@ def summary_method_select_handler(sum_format, summary_content):
     Input("download-summary-btn", "n_clicks"),
 )
 def download_headline_summary_handler(summary_content, n_clicks):
-    print(n_clicks)
     if n_clicks is not None:
         return dict(content=summary_content, filename="Headline Summary.txt")
 
