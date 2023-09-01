@@ -3,7 +3,12 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 
 def news_card(headline, art_url, img_url, description):
-    formatted_hl = headline if len(headline) < 101 else headline[:101] + "..."
+    if headline is None:
+        formatted_hl = "UNTITLED"
+    elif len(headline) < 101:
+        formatted_hl = headline
+    else:
+        formatted_hl = headline[:101] + "..."
 
     return html.A(
         id="",

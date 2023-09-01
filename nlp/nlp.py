@@ -6,7 +6,12 @@ import os
 
 # Formatting Inputs and Outputs
 def build_headline_list(headlines):
-    return "+".join(h["title"] for _, h in headlines.iterrows())
+    return "+".join(
+        h["title"]
+        if h["title"] is not None
+        else "UNTITLED" 
+        for _, h in headlines.iterrows()
+    )
 
 # Building prompts
 def build_headline_bot_prompt(headline_list, user_prompt):
