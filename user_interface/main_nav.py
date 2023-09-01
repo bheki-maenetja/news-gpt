@@ -5,14 +5,8 @@ import dash_bootstrap_components as dbc
 main_tabs = dcc.Tabs(
     id="main-tabs",
     className="main-tabs",
-    value="newsfeed",
+    value="analysis",
     children=[
-        dcc.Tab(
-            className="main-tab",
-            selected_className="main-tab-selected",
-            label="Newsfeed",
-            value="newsfeed",
-        ),
         dcc.Tab(
             className="main-tab",
             selected_className="main-tab-selected",
@@ -22,8 +16,20 @@ main_tabs = dcc.Tabs(
         dcc.Tab(
             className="main-tab",
             selected_className="main-tab-selected",
+            label="Keywords",
+            value="word-cloud",
+        ),
+        dcc.Tab(
+            className="main-tab",
+            selected_className="main-tab-selected",
             label="Semantics",
             value="semantics",
+        ),
+        dcc.Tab(
+            className="main-tab",
+            selected_className="main-tab-selected",
+            label="Editorial",
+            value="editorial",
         ),
         dcc.Tab(
             className="main-tab",

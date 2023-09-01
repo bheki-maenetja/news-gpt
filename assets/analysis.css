@@ -1,0 +1,181 @@
+/*
+Styling for the app.
+To find out more about styling go to https://dash.plotly.com/external-resources
+*/
+
+/* Containers */
+.newsfeed-nlp {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--lightblue);
+}
+
+.article-summariser {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    background-color: var(--red);
+}
+
+.article-summariser-output {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1em;
+    margin-bottom: 1em;
+    background-color: var(--pale);
+}
+
+.article-summariser-output > * {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1em;
+    background-color: var(--pale);
+}
+
+.headline-bot {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.headline-bot-message-space {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    background-color: var(--lightblue);
+}
+
+/* Messages */
+.hl-bot-message {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 1em;
+}
+
+.hl-bot-message.user {
+    justify-content: flex-start;
+}
+
+.hl-bot-message.bot {
+    justify-content: flex-end;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.hl-bot-message-content {
+    padding: 1em;
+    max-width: 40%;
+    color: white;
+}
+
+.hl-bot-message-content.user {
+    border-radius: 0em 1em 0em 1em;
+    background-color: var(--darkblue);
+}
+
+.hl-bot-message-content.bot {
+    border-radius: 1em 0em 1em 0em;
+    background-color: var(--lightblue);
+}
+
+/* Form Elements */
+.article-summariser-output-content {
+    flex-grow: 1;
+    overflow-y: scroll;
+    background-color: var(--pale);
+    resize: none;
+    border-radius: 1em;
+}
+
+.article-summariser-output-content:focus {
+    background-color: var(--pale);
+    border: none;
+    box-shadow: none;
+}
+
+.article-summariser-params {
+    height: 5em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 0.4em;
+    background-color: rgba(0,0,0,0.2);
+    background-color: var(--lightgray);
+}
+
+#summary-method-select {
+    width: 35%;
+    text-align: center;
+}
+
+.headline-bot-params {
+    display: flex;
+    border-top: 0.25em solid var(--gray);
+}
+
+.headline-bot-query {
+    flex-grow: 1;
+    padding: 1em;
+    border: none;
+    border-radius: 0em;
+    background-color: var(--pale);
+}
+
+.headline-bot-query:focus {
+    background-color: var(--pale);
+    border: none;
+    box-shadow: none;
+}
+
+/* Buttons */
+.headline-bot-btn {
+    width: 25%;
+    border: none;
+    background-color: var(--darkblue);
+    color: var(--lightblue);
+    font-size: 2em;
+}
+
+.headline-bot-btn:hover {
+    background-color: var(--lightblue);
+    color: var(--darkblue);
+}
+
+.headline-bot-btn.disabled {
+    background-color: var(--lightgray);
+    color: var(--gray);
+}
+
+.article-summariser-btn {
+    flex-grow: 0;
+    width: 18%;
+    padding: 0.25em;
+    border: 0.15em solid var(--darkred);
+    border-radius: 0.5em;
+    background-color: var(--red);
+    color: var(--pale);
+}
+
+.article-summariser-btn:hover {
+    background-color: var(--pale);
+    color: var(--darkred);
+    border-color: var(--red);
+}
+
+.article-summariser-btn.disabled {
+    background-color: var(--lightgray);
+    color: var(--gray);
+    border-color: var(--gray);
+}
+
+.article-summariser-btn.disabled:hover {
+    background-color: var(--lightgray);
+    color: var(--gray);
+    border-color: var(--gray);
+}

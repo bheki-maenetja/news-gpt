@@ -6,9 +6,11 @@ import dash_bootstrap_components as dbc
 # Standard Library Imports
 # Local Imports
 from user_interface.main_nav import main_nav
-from user_interface.newsfeed import get_newsfeed, get_news_cards, headline_bot_message
-from user_interface.analysis import get_analysis
+from user_interface.newsfeed import get_newsfeed, get_news_cards
+from user_interface.analysis import get_analysis, headline_bot_message
+from user_interface.word_cloud import get_word_cloud
 from user_interface.semantics import get_semantics
+from user_interface.editorial import get_editorial
 from user_interface.newsbot import  get_newsbot
 
 from articles.articles import get_articles, load_articles, get_cat_and_country, set_cat_and_country
@@ -31,6 +33,10 @@ server = app.server
 
 INITIAL_HL_BOT_MESSAGE = "Ask me anything and I'll use today's headlines to find the answer."
 
+category, country = get_cat_and_country()
+get_articles(category, country)
+articles = load_articles()
+
 # UI Layout
 ## Main App Layout
 app.layout = html.Div(
@@ -39,7 +45,13 @@ app.layout = html.Div(
     children=[
         dcc.Store(id="headline-bot-query-temp"),
         main_nav,
-        html.Div(id="section-container", className="section-container"),
+        html.Div(
+            id="section-container", 
+            className="section-container",
+            children=[
+                get_newsfeed(articles, category, country)
+            ]
+        ),
         html.Div(id='reload-handler-0', style={"display": "hidden"}),
         html.Div(id='reload-handler-1', style={"display": "hidden"}),
         html.Div(id='reload-handler-2', style={"display": "hidden"}),
@@ -53,15 +65,14 @@ app.layout = html.Div(
 ## Major Components
 ### Section Selector
 def section_selector(s_name):
-    if s_name == "newsfeed":
-        category, country = get_cat_and_country()
-        get_articles(category, country)
-        articles = load_articles()
-        return get_newsfeed(articles, category, country, INITIAL_HL_BOT_MESSAGE)
-    elif s_name == "analysis":
-        return get_analysis()
+    if s_name == "analysis":
+        return get_analysis(INITIAL_HL_BOT_MESSAGE)
+    elif s_name == "word-cloud":
+        return get_word_cloud()
     elif s_name == "semantics":
         return get_semantics()
+    elif s_name == "editorial":
+        return get_editorial()
     elif s_name == "newsbot":
         return get_newsbot()
 
@@ -107,7 +118,7 @@ For more info on how callback functions work you can visit the following links:
 """
 ## Page Refresh Callback
 @app.callback(
-    Output("section-container", "children"),
+    Output("newsfeed-nlp-container", "children"),
     inputs=dict(
         children=(
             Input("reload-handler-0", "children"), 
@@ -131,7 +142,6 @@ def refresh_page(tab_value, children):
 def main_tabs_handler(value): return None
 
 ## Newsfeed Callbacks
-### Article Feed
 @app.callback(
     Output("newsfeed-articles", "children"),
     Input("category-select", "value"),
@@ -145,6 +155,7 @@ def category_country_handler(category, country):
     set_cat_and_country(category, country)
     return get_news_cards(new_articles)
 
+## Analysis Callbacks
 ### Headline Chatbot
 @app.callback(
     Output("headline-bot-btn", "disabled"),
