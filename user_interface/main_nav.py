@@ -1,6 +1,5 @@
 # Third-Party Imports
 from dash import html, dcc
-import dash_bootstrap_components as dbc
 
 main_tabs = dcc.Tabs(
     id="main-tabs",

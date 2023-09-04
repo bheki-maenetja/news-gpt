@@ -1,5 +1,5 @@
 # Third-Party Imports
-from dash import html, dcc
+from dash import html
 import dash_bootstrap_components as dbc
 
 def news_card(headline, art_url, img_url, description):

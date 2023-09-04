@@ -1,6 +1,5 @@
 # Third-Party Imports
 from dash import html, dcc
-import dash_bootstrap_components as dbc
 
 def get_keywords():
     return html.Div(
