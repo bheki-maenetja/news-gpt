@@ -1,5 +1,6 @@
 # Third-Party Imports
 import openai
+from wordcloud import WordCloud
 
 # Standard Imports
 import os
@@ -74,3 +75,14 @@ def headline_chatbot(headlines, prompt):
     prompt = build_headline_bot_prompt(headline_list, prompt)
     message = gpt_call(prompt)
     return message
+
+# Word Cloud
+def get_word_cloud(headlines):
+    words = build_headline_list(headlines)
+    word_cloud = WordCloud(
+        width=1000,
+        height=1000,
+        background_color="#fdf0d5",
+    ).generate(words)
+    word_cloud_img = word_cloud.to_image()
+    return word_cloud_img

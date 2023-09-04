@@ -8,14 +8,14 @@ import dash_bootstrap_components as dbc
 from user_interface.main_nav import main_nav
 from user_interface.newsfeed import get_newsfeed, get_news_cards
 from user_interface.analysis import get_analysis, headline_bot_message
-from user_interface.word_cloud import get_word_cloud
+from user_interface.keywords import get_keywords
 from user_interface.semantics import get_semantics
 from user_interface.editorial import get_editorial
 from user_interface.newsbot import  get_newsbot
 
 from articles.articles import get_articles, load_articles, get_cat_and_country, set_cat_and_country
 
-from nlp.nlp import summarise_headlines, headline_chatbot
+from nlp.nlp import summarise_headlines, headline_chatbot, get_word_cloud
 
 # Global Variables
 app = Dash(
@@ -68,7 +68,7 @@ def section_selector(s_name):
     if s_name == "analysis":
         return get_analysis(INITIAL_HL_BOT_MESSAGE)
     elif s_name == "word-cloud":
-        return get_word_cloud()
+        return get_keywords()
     elif s_name == "semantics":
         return get_semantics()
     elif s_name == "editorial":
@@ -257,6 +257,21 @@ def summary_method_select_handler(sum_format, summary_content):
 def download_headline_summary_handler(summary_content, n_clicks):
     if n_clicks is not None:
         return dict(content=summary_content, filename="Headline Summary.txt")
+
+## Keywords Callback
+@app.callback(
+    Output("word-cloud-plot", "children"),
+    Input("word-cloud-btn", "n_clicks"),
+    suppress_callback_exceptions=True,
+    prevent_initial_call=True,
+)
+def word_cloud_headline(n_clicks):
+    if n_clicks is not None:
+        headlines = load_articles()
+        if headlines.empty:
+            return html.H1("Error — No articles available")
+        word_cloud = get_word_cloud(headlines)
+        return html.Img(src=word_cloud)
 
 # Running server
 if __name__ == "__main__":
