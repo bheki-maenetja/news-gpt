@@ -11,6 +11,7 @@ python-dotenv = "*"
 newsapi-python = "*"
 pandas = "*"
 plotly = "*"
+wordcloud = "*"
 
 [dev-packages]
 
