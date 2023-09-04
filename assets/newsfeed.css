@@ -30,6 +30,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 2em;
+    border-bottom: 0.2em solid var(--pale);
     background-color: var(--red);
 }
 

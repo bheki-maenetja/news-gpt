@@ -2,8 +2,6 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
-import plotly.graph_objects as go
-
 def get_keywords():
     return html.Div(
         id="word-cloud-section",
@@ -13,19 +11,26 @@ def get_keywords():
                 id="word-cloud-params",
                 className="word-cloud-params",
                 children=[
-                    html.Button("Generate Word Cloud"),
+                    html.Button(
+                        id="word-cloud-btn",
+                        className="word-cloud-btn",
+                        children="Generate Word Cloud",
+                    ),
                 ]
             ),
             html.Div(
                 id="word-cloud-output",
                 className="word-cloud-output",
                 children=[
-                    dcc.Loading([
-                        dcc.Graph(
-                            id="word-cloud-plot",
-                            figure=go.Figure(),
-                        )
-                    ])
+                    dcc.Loading(
+                        color="#003049",
+                        children=[
+                            html.Div(
+                                id="word-cloud-plot",
+                                className="word-cloud-plot",
+                            )
+                        ]
+                    )
                 ]
             )
         ]

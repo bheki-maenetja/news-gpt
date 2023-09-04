@@ -14,16 +14,16 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2em;
-    border-bottom: 0.2em solid purple;
-    background-color: pink;
+    padding: 1em 0em;
+    border-bottom: 0.2em solid var(--darkblue);
+    background-color: var(--lightblue);
 }
 
 .word-cloud-output {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background-color: dodgerblue;
+    background-color: var(--pale);
 }
 
 .word-cloud-output > * {
@@ -32,7 +32,30 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 
 /* Plots and Figures */
 .word-cloud-plot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
+    background-color: var(--pale);
+}
+
+.word-cloud-plot > * {
+    height: 90%;
+    width: 90%;
 }
 
 /* Buttons */
+.word-cloud-btn {
+    width: 50%;
+    padding: 1em 0em;
+    border: 0.2em solid var(--darkblue);
+    border-radius: 1em;
+    background-color: var(--pale);
+    color: var(--darkblue);
+}
+
+.word-cloud-btn:hover {
+    background-color: var(--darkblue);
+    color: var(--pale);
+    border-color: var(--pale);
+}
