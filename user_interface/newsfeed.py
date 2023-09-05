@@ -79,6 +79,8 @@ def get_newsfeed(articles, category, country):
                                     {"label": "United States", "value": "us"},
                                     {"label": "United Kingdom", "value": "gb"},
                                     {"label": "South Africa", "value": "za"},
+                                    {"label": "Australia", "value": "au"},
+                                    {"label": "Canada", "value": "ca"},
                                 ]
                             ),
                         ]
