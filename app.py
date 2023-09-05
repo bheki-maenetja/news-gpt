@@ -9,7 +9,6 @@ from user_interface.main_nav import main_nav
 from user_interface.newsfeed import get_newsfeed, get_news_cards
 from user_interface.analysis import get_analysis, headline_bot_message
 from user_interface.keywords import get_keywords
-from user_interface.semantics import get_semantics
 from user_interface.editorial import get_editorial
 from user_interface.newsbot import  get_newsbot
 
@@ -69,8 +68,6 @@ def section_selector(s_name):
         return get_analysis(INITIAL_HL_BOT_MESSAGE)
     elif s_name == "word-cloud":
         return get_keywords()
-    elif s_name == "semantics":
-        return get_semantics()
     elif s_name == "editorial":
         return get_editorial()
     elif s_name == "newsbot":

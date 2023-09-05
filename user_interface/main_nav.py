@@ -21,12 +21,6 @@ main_tabs = dcc.Tabs(
         dcc.Tab(
             className="main-tab",
             selected_className="main-tab-selected",
-            label="Semantics",
-            value="semantics",
-        ),
-        dcc.Tab(
-            className="main-tab",
-            selected_className="main-tab-selected",
             label="Editorial",
             value="editorial",
         ),
