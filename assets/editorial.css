@@ -24,13 +24,20 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     display: flex;
     flex-direction: column;
     padding: 2em;
-    background-color: var(--lightgray);
     background-color: var(--red);
 }
 
-.editorial-output > * {
-    flex-grow: 1;
+.editorial-output-content-container {
     display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    border-radius: 1em;
+    background-color: var(--pale);
+}
+
+.editorial-output-content-container > * {
+    display: flex;
+    flex-grow: 1;
     flex-direction: column;
     border-radius: 1em;
     background-color: var(--pale);
@@ -55,7 +62,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     border-radius: 1em;
     background-color: var(--darkred);
     background-color: var(--pale);
-    color: var(--pale);
+    color: black;
 }
 
 .editorial-output-content::placeholder {

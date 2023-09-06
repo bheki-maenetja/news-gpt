@@ -50,17 +50,23 @@ def get_editorial():
                 id="editorial-output",
                 className="editorial-output",
                 children=[
-                    dcc.Loading(
-                        color="#780000",
+                    html.Div(
+                        id="editorial-output-content-container",
+                        className="editorial-output-content-container",
                         children=[
-                            dbc.Textarea(
-                                id="editorial-output-content",
-                                className="editorial-output-content",
-                                value="",
-                                draggable=False,
-                                readOnly=True,
-                                placeholder="Create an opinionated editorial of today's headlines"
-                            ),
+                            dcc.Loading(
+                                color="#780000",
+                                children=[
+                                    dbc.Textarea(
+                                        id="editorial-output-content",
+                                        className="editorial-output-content",
+                                        value="",
+                                        draggable=False,
+                                        readOnly=True,
+                                        placeholder="Create an opinionated editorial of today's headlines"
+                                    ),
+                                ]
+                            )
                         ]
                     )
                 ]
