@@ -12,7 +12,7 @@ from user_interface.keywords import get_keywords
 from user_interface.editorial import get_editorial
 from user_interface.newsbot import  get_newsbot
 
-from articles.articles import get_articles, load_articles, get_cat_and_country, set_cat_and_country
+from articles.articles import get_articles, load_articles
 
 from nlp.nlp import summarise_headlines, headline_chatbot, get_word_cloud
 
@@ -32,8 +32,7 @@ server = app.server
 
 INITIAL_HL_BOT_MESSAGE = "Ask me anything and I'll use today's headlines to find the answer."
 
-category, country = get_cat_and_country()
-get_articles(category, country)
+get_articles()
 articles = load_articles()
 
 # UI Layout
@@ -48,7 +47,7 @@ app.layout = html.Div(
             id="section-container", 
             className="section-container",
             children=[
-                get_newsfeed(articles, category, country)
+                get_newsfeed(articles)
             ]
         ),
         html.Div(id='reload-handler-0', style={"display": "hidden"}),
@@ -149,7 +148,6 @@ def main_tabs_handler(value): return None
 def category_country_handler(category, country):
     get_articles(category, country)
     new_articles = load_articles()
-    set_cat_and_country(category, country)
     return get_news_cards(new_articles)
 
 ## Analysis Callbacks

@@ -36,13 +36,3 @@ def load_articles():
         return pd.read_json("state/articles.json", orient="records")
     except Exception as e:
         print(f"'load_articles' -> Something is wrong {e}")
-
-# Category and Country
-def get_cat_and_country():
-    with open("state/category-country.txt", "r") as f:
-        cat_count = f.read().split("+")
-    return cat_count[0], cat_count[1]
-
-def set_cat_and_country(category, country):
-    with open("state/category-country.txt", "w") as f:
-        f.write(f"{category}+{country}")

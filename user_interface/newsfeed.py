@@ -39,7 +39,7 @@ def get_news_cards(articles):
         for _, r in articles.iterrows()
     ]
 
-def get_newsfeed(articles, category, country):
+def get_newsfeed(articles):
     return html.Div(
         id="newsfeed-section",
         className="newsfeed-section",
@@ -57,7 +57,7 @@ def get_newsfeed(articles, category, country):
                                 id="category-select",
                                 class_name="category-select",
                                 placeholder="Select a News Category",
-                                value=category,
+                                value="general",
                                 persistence=False,
                                 options=[
                                     {"label": "General", "value": "general"},
@@ -73,7 +73,7 @@ def get_newsfeed(articles, category, country):
                                 id="country-select",
                                 class_name="country-select",
                                 placeholder="Select a Country",
-                                value=country,
+                                value="us",
                                 persistence=False,
                                 options=[
                                     {"label": "United States", "value": "us"},
