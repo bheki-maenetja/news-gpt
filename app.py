@@ -14,7 +14,7 @@ from user_interface.newsbot import  get_newsbot
 
 from articles.articles import get_articles, load_articles
 
-from nlp.nlp import summarise_headlines, headline_chatbot, get_word_cloud
+from nlp.nlp import summarise_headlines, headline_chatbot, get_word_cloud, get_headline_editorial
 
 # Global Variables
 app = Dash(
@@ -266,6 +266,53 @@ def word_cloud_headline(n_clicks):
             return html.H1("Error — No articles available")
         word_cloud = get_word_cloud(headlines)
         return html.Img(src=word_cloud)
+
+## Editorial Callbacks
+@app.callback(
+    Output("editorial-output-content", "value"),
+    State("editorial-slider", "value"),
+    Input("editorial-btn", "n_clicks"),
+    Input("editorial-clear-btn", "n_clicks"),
+    suppress_callback_exceptions=True,
+    prevent_initial_call=True,
+)
+def editorial_handler(op_choice, edit_clicks, clear_clicks):
+    if (edit_clicks is not None or clear_clicks is not None):
+        triggered_id = ctx.triggered_id
+        if triggered_id == "editorial-btn":
+            # sleep(5)
+            headlines = load_articles()
+            if headlines.empty:
+                return html.H1("Error — No articles available")
+            return get_headline_editorial(headlines, op_choice)
+        elif triggered_id == "editorial-clear-btn":
+            return ""
+
+@app.callback(
+    Output("editorial-download-btn", "disabled"),
+    Output("editorial-download-btn", "className"),
+    Output("editorial-clear-btn", "disabled"),
+    Output("editorial-clear-btn", "className"),
+    Input("editorial-output-content", "value"),
+    suppress_callback_exceptions=True,
+    prevent_initial_call=True,
+)
+def editorial_params_handler(edit_content):
+    return (
+        edit_content == "",
+        f"editorial-btn {'disabled' if edit_content == '' else ''}",
+        edit_content == "",
+        f"editorial-btn {'disabled' if edit_content == '' else ''}",
+    )
+
+@app.callback(
+    Output("download-editorial", "data"),
+    State("editorial-output-content", "value"),
+    Input("editorial-download-btn", "n_clicks"),
+)
+def download_editorial_handler(edit_content, n_clicks):
+    if n_clicks is not None:
+        return dict(content=edit_content, filename="Editorial.txt")
 
 # Running server
 if __name__ == "__main__":

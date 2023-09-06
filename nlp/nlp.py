@@ -42,6 +42,22 @@ def build_summary_prompt(headline_list, sum_format):
     main_prompt += f" Headlines: {headline_list}"
     return main_prompt
 
+def build_editorial_prompt(headline_list, opinion_choice):
+    main_prompt = "Write an editorial based on the following set of news headlines. Each headline is separated by a '+' symbol. The editorial should "
+    opinions = [
+        "be extremely far left.",
+        "lean heavily progressive.",
+        "be liberal or centre-left.",
+        "be neutral/centrist.",
+        "be conservative or centre-right.",
+        "lean heavily right wing.",
+        "be extremely far right."
+    ]
+
+    main_prompt += opinions[opinion_choice + 3]
+    main_prompt += f" Headlines: {headline_list}"
+    return main_prompt
+
 # GPT-4 API Call
 def gpt_call(prompt):
     openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -86,3 +102,10 @@ def get_word_cloud(headlines):
     ).generate(words)
     word_cloud_img = word_cloud.to_image()
     return word_cloud_img
+
+# Editorial
+def get_headline_editorial(headlines, opinion_choice):
+    headline_list = build_headline_list(headlines)
+    prompt = build_editorial_prompt(headline_list, opinion_choice)
+    editorial = gpt_call(prompt)
+    return editorial
