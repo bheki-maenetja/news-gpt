@@ -1,0 +1,51 @@
+/*
+Styling for the app.
+To find out more about styling go to https://dash.plotly.com/external-resources
+*/
+
+/* Containers */
+.editorial-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.editorial-params {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 2em;
+    background-color: palegreen;
+}
+
+.editorial-params > *:first-child {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.editorial-output {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    background-color: orange;
+}
+
+.editorial-output > * {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form Elements */
+.editorial-output-content {
+    flex-grow: 1;
+    overflow-y: scroll;
+    resize: none;
+}
+
+/* Buttons */
+.editorial-btn {
+    border: none;
+    width: 25%;
+}
