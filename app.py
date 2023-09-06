@@ -33,7 +33,6 @@ server = app.server
 INITIAL_HL_BOT_MESSAGE = "Ask me anything and I'll use today's headlines to find the answer."
 
 get_articles()
-articles = load_articles()
 
 # UI Layout
 ## Main App Layout
@@ -47,7 +46,7 @@ app.layout = html.Div(
             id="section-container", 
             className="section-container",
             children=[
-                get_newsfeed(articles)
+                get_newsfeed(load_articles())
             ]
         ),
         html.Div(id='reload-handler-0', style={"display": "hidden"}),
