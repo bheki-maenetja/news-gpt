@@ -26,7 +26,7 @@ def get_editorial():
                             0: "Centrist",
                             1: "Conservative",
                             2: "Right Wing",
-                            3: "Far Right",
+                            3: "AltRight",
                         },
                     ),
                     html.Button(
@@ -41,7 +41,7 @@ def get_editorial():
                     ),
                     html.Button(
                         id="editorial-clear-btn",
-                        className="editorial-btn",
+                        className="editorial-btn disabled",
                         children="Clear",
                     ),
                 ]
@@ -51,6 +51,7 @@ def get_editorial():
                 className="editorial-output",
                 children=[
                     dcc.Loading(
+                        color="#780000",
                         children=[
                             dbc.Textarea(
                                 id="editorial-output-content",
