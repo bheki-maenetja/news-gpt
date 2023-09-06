@@ -36,12 +36,15 @@ def get_editorial():
                     ),
                     html.Button(
                         id="editorial-download-btn",
-                        className="editorial-btn",
+                        className="editorial-btn disabled",
+                        disabled=True,
                         children="Download",
                     ),
+                    dcc.Download(id="download-editorial"),
                     html.Button(
                         id="editorial-clear-btn",
                         className="editorial-btn disabled",
+                        disabled=True,
                         children="Clear",
                     ),
                 ]
@@ -63,7 +66,7 @@ def get_editorial():
                                         value="",
                                         draggable=False,
                                         readOnly=True,
-                                        placeholder="Create an opinionated editorial of today's headlines"
+                                        placeholder="Create an editorial for today's headlines"
                                     ),
                                 ]
                             )
