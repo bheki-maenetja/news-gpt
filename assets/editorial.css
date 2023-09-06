@@ -65,10 +65,6 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     color: black;
 }
 
-.editorial-output-content::placeholder {
-    color: var(--darkred);
-}
-
 .editorial-output-content:focus {
     background-color: var(--pale);
     border: none;
