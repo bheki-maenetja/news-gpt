@@ -1,0 +1,66 @@
+/*
+Styling for the app.
+To find out more about styling go to https://dash.plotly.com/external-resources
+*/
+
+/* Containers */
+.newsbot-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.newsbot-message-space {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    background-color: pink;
+}
+
+.newsbot-params {
+    display: flex;
+    padding: 2em;
+    background-color: burlywood;
+}
+
+/* Messages */
+.newsbot-message {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 1em;
+}
+
+.newsbot-message.user {
+    justify-content: flex-start;
+}
+
+.newsbot-message.bot {
+    justify-content: flex-end;
+    /* background-color: rgba(255, 255, 255, 0.3); */
+}
+
+.newsbot-message-content {
+    padding: 1em;
+    max-width: 40%;
+    /* color: white; */
+}
+
+.newsbot-message-content.user {
+    border-radius: 0em 1em 0em 1em;
+    background-color: greenyellow;
+}
+
+.newsbot-message-content.bot {
+    border-radius: 1em 0em 1em 0em;
+    background-color: paleturquoise;
+}
+
+/* Form Elements */
+
+/* Buttons */
+.newsbot-btn {
+    width: 20%;
+}

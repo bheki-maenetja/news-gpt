@@ -2,11 +2,65 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
+def newsbot_message(message, is_user=True, is_temp=False):
+    if is_temp:
+        return html.Div(
+            id="newsbot-temp-message",
+            className="newsbot-message bot",
+            children=[
+                dbc.Spinner(
+                    color="#003049",
+                    type="grow",
+                    spinner_style={"marginRight": "0.5em"},
+                )
+                for _ in range(3)
+            ]
+        )
+    return html.Div(
+        className=f"newsbot-message {'user' if is_user else 'bot'}",
+        children=[
+            html.Div(
+                className=f"newsbot-message-content {'user' if is_user else 'bot'}",
+                children=message,
+            )
+        ]
+    )
+
+
 def get_newsbot():
     return html.Div(
-        id="",
-        className="",
+        id="newsbot-section",
+        className="newsbot-section",
         children=[
-            html.H2("The newsbot section..."),
+            html.Div(
+                id="newsbot-message-space",
+                className="newsbot-message-space",
+                children=[
+                    html.Div([], style={"flexGrow": "1"}),
+                    newsbot_message("Bot message", False),
+                    newsbot_message("User message"),
+                    newsbot_message("", False, True),
+                ]
+            ),
+            html.Div(
+                id="newsbot-params",
+                className="newsbot-params",
+                children=[
+                    dbc.Input(
+                        id="newsbot-query",
+                        className="newsbot-query",
+                        placeholder="Enter your question here",
+                        value="",
+                        persistence=False,
+                    ),
+                    html.Button(
+                        id="newsbot-btn",
+                        className="newsbot-btn",
+                        children=[
+                            html.I(className="bi bi-send-fill")
+                        ]
+                    )
+                ]
+            )
         ]
     )
