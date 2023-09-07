@@ -1,9 +1,16 @@
 # Third-Party Imports
 import openai
 from wordcloud import WordCloud
+import spacy
+import nltk
+from nltk.stem import WordNetLemmatizer
 
 # Standard Imports
 import os
+from string import punctuation
+
+# Global Variables
+nlp = spacy.load("en_core_web_sm")
 
 # Formatting Inputs and Outputs
 def build_headline_list(headlines):
@@ -14,9 +21,43 @@ def build_headline_list(headlines):
         for _, h in headlines.iterrows()
     )
 
+def word_tokenize(text, lower_case=False):
+    banned = list(punctuation) + nltk.corpus.stopwords.words("english")
+        
+    if lower_case:
+        return [
+        w.lower() for w in nltk.word_tokenize(text) 
+        if w.lower() not in banned
+    ]
+        
+    return [
+        w for w in nltk.word_tokenize(text) 
+        if w.lower() not in banned
+    ]
+
+def parse_query(query):
+    # Get improper nouns
+    lemma = WordNetLemmatizer()
+    pos_tags = nltk.pos_tag(word_tokenize(query))
+    improper_nouns = {
+        lemma.lemmatize(tag[0]).lower() 
+        for tag in pos_tags 
+        if tag[-1] in ("NN", "NNS")
+    }
+
+    # Get named entities
+    doc = nlp(query)
+    entities = { ent.text for ent in doc.ents }
+    
+    # Get all searchable entities
+    entity_str = f"({' OR '.join(ent for ent in entities)})"
+    entity_str += f" AND ({' OR '.join(ent for ent in improper_nouns)})"
+
+    return entity_str
+
 # Building prompts
 def build_headline_bot_prompt(headline_list, user_prompt):
-    main_prompt = "You will be given a user-generated prompt and a list of news headline. Each headline is separated by a '+' symbol. Answer the prompt using the list of headlines. YOU MAY ONLY USE THE HEADLINES FOR CONTEXT!\n\n"
+    main_prompt = "You will be given a user-generated prompt and a list of news headline. Each headline is separated by a '+' symbol. Answer the prompt using the list of headlines; use the headlines to answer the prompt directly or to provide additional context. If there are no headlines, answer the prompt to the best of your ability.\n\n"
     main_prompt += f"Prompt: {user_prompt}\n\n"
     main_prompt += f"Headlines: {headline_list}"
     return main_prompt
@@ -76,7 +117,7 @@ def gpt_call(prompt):
         summary = res.choices[0].message.content
         return summary
     except Exception as e:
-        return f"gpt_call -> {e}"
+        return f"Error: gpt_call -> {e}"
 
 # Summarisation
 def summarise_headlines(headlines, sum_format):

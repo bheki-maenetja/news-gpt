@@ -4,8 +4,6 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 
 # Standard Library Imports
-from time import sleep
-
 # Local Imports
 from user_interface.main_nav import main_nav
 from user_interface.newsfeed import get_newsfeed, get_news_cards
@@ -14,9 +12,9 @@ from user_interface.keywords import get_keywords
 from user_interface.editorial import get_editorial
 from user_interface.newsbot import  get_newsbot, newsbot_message
 
-from articles.articles import get_articles, load_articles
+from articles.articles import get_articles, load_articles, search_articles
 
-from nlp.nlp import summarise_headlines, headline_chatbot, get_word_cloud, get_headline_editorial
+from nlp.nlp import summarise_headlines, headline_chatbot, get_word_cloud, get_headline_editorial, parse_query
 
 # Global Variables
 app = Dash(
@@ -354,16 +352,9 @@ def newsbot_user_message_handler(query, n_clicks, current_state):
     suppress_callback_exceptions=True,
 )
 def newsbot_system_message_handler(query, current_state):
-    # headlines = load_articles()
-    # if headlines.empty:
-    #     return html.Div(
-    #         className="newsbot-message-content bot",
-    #         children="NO ARTICLES AVAILABLE — PLEASE TRY AGAIN",
-    #     ), ""
-
-    # new_message = headline_chatbot(headlines, query)
-    sleep(2)
-    new_message = "This is a test..."
+    parsed_query = parse_query(query)
+    headlines = search_articles(parsed_query)
+    new_message = headline_chatbot(headlines, query)
 
     return html.Div(
         className="newsbot-message-content bot",

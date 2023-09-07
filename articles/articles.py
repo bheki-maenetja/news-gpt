@@ -6,7 +6,7 @@ import pandas as pd
 import os
 import json
 
-# Articles
+# Getting Articles
 def get_articles(category="general", country="us", save=True):
     try:
         client = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
@@ -23,6 +23,24 @@ def get_articles(category="general", country="us", save=True):
         return res["articles"]
     save_articles(res["articles"])
 
+def search_articles(query):
+    try:
+        client = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
+        res = client.get_everything(
+            q=query,
+            sort_by="relevancy",
+            page_size=100,
+            language="en",
+        )
+    except Exception as e:
+        print(f"'search_articles' -> Something is wrong: {e}")
+        return []
+    
+    art_df = pd.DataFrame.from_records(res["articles"])
+
+    return art_df
+
+# Saving and Loading Articles
 def save_articles(articles):
     try:
         articles_json = json.dumps(articles)
