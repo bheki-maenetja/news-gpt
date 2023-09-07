@@ -4,13 +4,15 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 
 # Standard Library Imports
+from time import sleep
+
 # Local Imports
 from user_interface.main_nav import main_nav
 from user_interface.newsfeed import get_newsfeed, get_news_cards
 from user_interface.analysis import get_analysis, headline_bot_message
 from user_interface.keywords import get_keywords
 from user_interface.editorial import get_editorial
-from user_interface.newsbot import  get_newsbot
+from user_interface.newsbot import  get_newsbot, newsbot_message
 
 from articles.articles import get_articles, load_articles
 
@@ -31,6 +33,7 @@ app.title = "NewsGPT"
 server = app.server
 
 INITIAL_HL_BOT_MESSAGE = "Ask me anything and I'll use today's headlines to find the answer."
+INITIAL_NEWSBOT_MESSAGE = "Ask me anything and I'll search over 2 million articles from 80 000 sources to find the answer."
 
 get_articles()
 
@@ -41,6 +44,7 @@ app.layout = html.Div(
     className="main-container", 
     children=[
         dcc.Store(id="headline-bot-query-temp"),
+        dcc.Store(id="newsbot-query-temp"),
         main_nav,
         html.Div(
             id="section-container", 
@@ -69,7 +73,7 @@ def section_selector(s_name):
     elif s_name == "editorial":
         return get_editorial()
     elif s_name == "newsbot":
-        return get_newsbot()
+        return get_newsbot(INITIAL_NEWSBOT_MESSAGE)
 
 # Callback functions
 """
@@ -280,7 +284,6 @@ def editorial_handler(op_choice, edit_clicks, clear_clicks):
     if (edit_clicks is not None or clear_clicks is not None):
         triggered_id = ctx.triggered_id
         if triggered_id == "editorial-btn":
-            # sleep(5)
             headlines = load_articles()
             if headlines.empty:
                 return html.H1("Error — No articles available")
@@ -313,6 +316,59 @@ def editorial_params_handler(edit_content):
 def download_editorial_handler(edit_content, n_clicks):
     if n_clicks is not None:
         return dict(content=edit_content, filename="Editorial.txt")
+    
+## Newsbot Callbacks
+@app.callback(
+    Output("newsbot-btn", "disabled"),
+    Output("newsbot-btn", "className"),
+    Input("newsbot-query", "value"),
+    suppress_callback_exceptions=True,
+    prevent_initial_call=True,
+)
+def newsbot_query_handler(query):
+    if query.strip() != "":
+        return False, "newsbot-btn"
+    return True, "newsbot-btn disabled"
+
+@app.callback(
+    Output("newsbot-message-space", "children"),
+    Output("newsbot-query-temp", "data"),
+    Output("newsbot-query", "value"),
+    State("newsbot-query", "value"),
+    Input("newsbot-btn", "n_clicks"),
+    Input("newsbot-message-space", "children"),
+    suppress_callback_exceptions=True,
+    prevent_initial_call=True,
+)
+def newsbot_user_message_handler(query, n_clicks, current_state):
+    if n_clicks is None: return current_state, "", query
+    user_message = newsbot_message(query)
+    temp_message = newsbot_message(query, False, True)
+    return current_state + [user_message, temp_message], query, ""
+
+@app.callback(
+    Output("newsbot-temp-message", "children"),
+    Output("newsbot-temp-message", "id"),
+    State("newsbot-query-temp", "data"),
+    Input("newsbot-message-space", "children"),
+    suppress_callback_exceptions=True,
+)
+def newsbot_system_message_handler(query, current_state):
+    # headlines = load_articles()
+    # if headlines.empty:
+    #     return html.Div(
+    #         className="newsbot-message-content bot",
+    #         children="NO ARTICLES AVAILABLE — PLEASE TRY AGAIN",
+    #     ), ""
+
+    # new_message = headline_chatbot(headlines, query)
+    sleep(2)
+    new_message = "This is a test..."
+
+    return html.Div(
+        className="newsbot-message-content bot",
+        children=new_message,
+    ), ""
 
 # Running server
 if __name__ == "__main__":

@@ -27,7 +27,7 @@ def newsbot_message(message, is_user=True, is_temp=False):
     )
 
 
-def get_newsbot():
+def get_newsbot(initial_message):
     return html.Div(
         id="newsbot-section",
         className="newsbot-section",
@@ -37,9 +37,7 @@ def get_newsbot():
                 className="newsbot-message-space",
                 children=[
                     html.Div([], style={"flexGrow": "1"}),
-                    newsbot_message("Bot message", False),
-                    newsbot_message("User message"),
-                    newsbot_message("", False, True),
+                    newsbot_message(initial_message, False),
                 ]
             ),
             html.Div(
@@ -55,7 +53,8 @@ def get_newsbot():
                     ),
                     html.Button(
                         id="newsbot-btn",
-                        className="newsbot-btn",
+                        className="newsbot-btn disabled",
+                        disabled=True,
                         children=[
                             html.I(className="bi bi-send-fill")
                         ]
