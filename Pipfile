@@ -12,6 +12,8 @@ newsapi-python = "*"
 pandas = "*"
 plotly = "*"
 wordcloud = "*"
+nltk = "*"
+spacy = "*"
 
 [dev-packages]
 
