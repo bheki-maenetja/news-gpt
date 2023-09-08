@@ -35,6 +35,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1em;
     height: 100%;
     background-color: var(--pale);
 }
@@ -67,12 +68,18 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     }
 
     .word-cloud-btn {
-        width: 35%;
         padding: 0.5em 0;
     }
 
     .word-cloud-plot > * {
         height: 450px;
         width: 450px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .word-cloud-plot > * {
+        height: 300px;
+        width: 300px;
     }
 }

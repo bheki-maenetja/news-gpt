@@ -82,6 +82,8 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 .news-card-description {
     display: none;
     flex-grow: 1;
+    max-height: 100%;
+    overflow-y: hidden;
     padding: 0.5em;
     margin: 0;
     background-color: var(--pale);
@@ -168,5 +170,21 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     .category-select, .country-select {
         padding: 0;
         height: 50px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .newsfeed-articles {
+        background-color: magenta;
+        width: 50%;
+    }
+
+    .newsfeed-params {
+        width: 50%;
+        padding: 0em 1em;
+    }
+
+    .news-card {
+        width: 90%;
     }
 }
