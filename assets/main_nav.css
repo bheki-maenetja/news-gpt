@@ -20,15 +20,18 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 .main-tabs .main-tab {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 100%;
     padding: 1.5em 4.575em;
     border: none;
     background-color: var(--gray);
     color: white;
+    text-align: center;
 }
 
 .main-tabs .main-tab * {
     font-family: 'Sarala', sans-serif;
+    text-align: center;
 }
 
 .main-tabs .main-tab-selected {
@@ -64,4 +67,44 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     color: white;
     font-family: 'Sarala', sans-serif;
     font-weight: 900;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1260px) {
+    .main-tabs .main-tab {
+        padding: 1.5em 2.935em;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .main-tabs .main-tab {
+        padding: 1.5em 1.725em;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .nav-header {
+        display: flex;
+        justify-content: center;
+        padding: 0.5em 0em;
+        text-align: center;
+    }
+
+    .main-tabs .main-tab {
+        padding: 1.5em 1em;
+    }
+
+    .main-nav {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main-tabs .main-tab {
+        padding: 1em 0.5em;
+    }
+
+    .main-nav {
+        flex-direction: column;
+    }
 }
