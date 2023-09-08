@@ -5,6 +5,8 @@ main_tabs = dcc.Tabs(
     id="main-tabs",
     className="main-tabs",
     value="analysis",
+    vertical=False,
+    mobile_breakpoint=0,
     children=[
         dcc.Tab(
             className="main-tab",
