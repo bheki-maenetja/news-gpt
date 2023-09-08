@@ -110,7 +110,7 @@ def get_analysis(initial_message):
                             dbc.Select(
                                 id="summary-method-select",
                                 className="summary-method-select",
-                                placeholder="Select a Summary Format",
+                                placeholder="Format",
                                 value="",
                                 options=summary_methods
                             ),
