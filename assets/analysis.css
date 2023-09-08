@@ -2,6 +2,8 @@
 Styling for the app.
 To find out more about styling go to https://dash.plotly.com/external-resources
 */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mali&display=swap');
 
 /* Containers */
 .newsfeed-nlp {
@@ -72,6 +74,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     padding: 1em;
     max-width: 40%;
     color: white;
+    font-family: 'Mali', cursive;
 }
 
 .hl-bot-message-content.user {
@@ -88,6 +91,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 .article-summariser-output-content {
     flex-grow: 1;
     overflow-y: scroll;
+    padding: 1.5em;
     background-color: var(--pale);
     resize: none;
     border-radius: 1em;

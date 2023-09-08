@@ -3,6 +3,9 @@ Styling for the app.
 To find out more about styling go to https://dash.plotly.com/external-resources
 */
 
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Sarala:wght@400;700&display=swap');
+
 /* Containers */
 .main-nav {
     display: flex;
@@ -18,10 +21,14 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 1.5em 4.6em;
+    padding: 1.5em 4.575em;
     border: none;
     background-color: var(--gray);
     color: white;
+}
+
+.main-tabs .main-tab * {
+    font-family: 'Sarala', sans-serif;
 }
 
 .main-tabs .main-tab-selected {
@@ -55,4 +62,6 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     margin: 0;
     background-color: black;
     color: white;
+    font-family: 'Sarala', sans-serif;
+    font-weight: 900;
 }

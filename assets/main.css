@@ -16,7 +16,8 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 }
 
 /* Imports */
-/* @import "main_nav.css"; */
+@import url('https://fonts.googleapis.com/css2?family=Sarala:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 /* Universal Styling */
 * {
@@ -27,6 +28,10 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 
 body {
     height: fit-content;
+}
+
+button {
+    font-family: 'Ubuntu', sans-serif;
 }
 
 /* Containers */

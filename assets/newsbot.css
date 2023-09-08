@@ -2,6 +2,7 @@
 Styling for the app.
 To find out more about styling go to https://dash.plotly.com/external-resources
 */
+@import url('https://fonts.googleapis.com/css2?family=Mali&display=swap');
 
 /* Containers */
 .newsbot-section {
@@ -47,6 +48,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     padding: 1em;
     max-width: 40%;
     color: white;
+    font-family: 'Mali', cursive;
 }
 
 .newsbot-message-content.user {
