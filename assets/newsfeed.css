@@ -99,3 +99,74 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     box-shadow: none;
     border: none;
 }
+
+/* Media Queries */
+@media screen and (max-width: 1350px) {
+    .newsfeed-articles {
+        background-color: purple;
+    }
+
+    .main-article-feed {
+        width: 40%;
+    }
+
+    .newsfeed-nlp-container {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .newsfeed-articles {
+        background-color: darkgoldenrod;
+    }
+
+    .category-select {
+        margin-bottom: 1em;
+    }
+
+    .category-select, .country-select {
+        width: 100%;
+    }
+
+    .news-card {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .newsfeed-articles {
+        background-color: dodgerblue;
+        width: 70%;
+        border-bottom: 0.2em solid var(--pale);
+    }
+
+    .newsfeed-params {
+        width: 30%;
+        align-content: center;
+    }
+
+    .newsfeed-section {
+        flex-direction: column;
+    }
+
+    .main-article-feed {
+        flex-direction: row;
+        height: 35%;
+        width: 100%;
+    }
+
+    .newsfeed-nlp-container {
+        height: 65%;
+        width: 100%;
+    }
+
+    .news-card {
+        width: 250px;
+        height: 250px;
+    }
+
+    .category-select, .country-select {
+        padding: 0;
+        height: 50px;
+    }
+}

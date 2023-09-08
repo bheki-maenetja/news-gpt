@@ -10,7 +10,6 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: var(--lightblue);
 }
 
 .article-summariser {
@@ -107,9 +106,9 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     height: 5em;
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     align-items: center;
     border-radius: 0.4em;
-    background-color: rgba(0,0,0,0.2);
     background-color: var(--lightgray);
 }
 
@@ -182,4 +181,90 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     background-color: var(--lightgray);
     color: var(--gray);
     border-color: var(--gray);
+}
+
+/* Media Queries */
+@media screen and (max-width: 1050px) {
+    .newsfeed-nlp {
+        flex-direction: row;
+    }
+
+    .article-summariser, .headline-bot {
+        height: 100%;
+        width: 50%;
+    }
+
+    .headline-bot-params {
+        padding: 2em 2em 4em 2em;
+        background-color: var(--lightblue);
+    }
+
+    .headline-bot-query {
+        border-radius: 0.5em 0 0 0.5em;
+        box-shadow: 0 0 0.5em 0.25em var(--darkblue);
+    }
+
+    .headline-bot-query:focus {
+        box-shadow: 0 0 0.5em 0.25em var(--darkblue);
+    }
+
+    .headline-bot-btn {
+        border-radius: 0 0.25em 0.25em 0;
+        box-shadow: 0.15em 0 0.25em 0.15em var(--darkblue);
+    }
+
+    .article-summariser-params {
+        height: 7.5em;
+        padding: 0.5em 2em;
+    }
+
+    #summary-method-select {
+        width: 100%;
+    }
+
+    .article-summariser-btn {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .newsfeed-nlp {
+        flex-direction: column;
+    }
+
+    .article-summariser, .headline-bot {
+        height: 50%;
+        width: 100%;
+    }
+
+    .headline-bot-params {
+        padding: 0em;
+    }
+
+    .headline-bot-query {
+        border-radius: 0em;
+        box-shadow: none;
+    }
+
+    .headline-bot-query:focus {
+        box-shadow: none;
+    }
+
+    .headline-bot-btn {
+        border-radius: 0em;
+        box-shadow: none
+    }
+
+    .article-summariser-params {
+        height: 5em;
+        padding: 0.25em;
+    }
+
+    #summary-method-select {
+        width: 30%;
+    }
+
+    .article-summariser-btn {
+        width: 18%;
+    }
 }

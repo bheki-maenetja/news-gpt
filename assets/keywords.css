@@ -59,3 +59,20 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     color: var(--pale);
     border-color: var(--pale);
 }
+
+/* Media Queries */
+@media screen and (max-width: 1050px) {
+    .word-cloud-params {
+        padding: 0.5em 0;
+    }
+
+    .word-cloud-btn {
+        width: 35%;
+        padding: 0.5em 0;
+    }
+
+    .word-cloud-plot > * {
+        height: 450px;
+        width: 450px;
+    }
+}
