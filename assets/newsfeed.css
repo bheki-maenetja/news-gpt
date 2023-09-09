@@ -104,10 +104,6 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 
 /* Media Queries */
 @media screen and (max-width: 1350px) {
-    .newsfeed-articles {
-        background-color: purple;
-    }
-
     .main-article-feed {
         width: 40%;
     }
@@ -118,10 +114,6 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 }
 
 @media screen and (max-width: 1200px) {
-    .newsfeed-articles {
-        background-color: darkgoldenrod;
-    }
-
     .category-select {
         margin-bottom: 1em;
     }
@@ -137,7 +129,6 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 
 @media screen and (max-width: 1050px) {
     .newsfeed-articles {
-        background-color: dodgerblue;
         width: 70%;
         border-bottom: 0.2em solid var(--pale);
     }
@@ -153,12 +144,12 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 
     .main-article-feed {
         flex-direction: row;
-        height: 35%;
+        height: 40%;
         width: 100%;
     }
 
     .newsfeed-nlp-container {
-        height: 65%;
+        height: 60%;
         width: 100%;
     }
 
@@ -174,17 +165,36 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 }
 
 @media screen and (max-width: 800px) {
+    .main-article-feed {
+        flex-direction: column;
+    }
+
     .newsfeed-articles {
-        background-color: magenta;
-        width: 50%;
+        width: 100%;
     }
 
     .newsfeed-params {
-        width: 50%;
-        padding: 0em 1em;
+        width: 100%;
+        padding: 1em 1em;
+    }
+
+    .newsfeed-params > h2 {
+        display: none;
+    }
+
+    .category-select, .country-select {
+        padding: 0;
+        height: 30px;
+        width: 48%;
+        margin-bottom: 0;
     }
 
     .news-card {
-        width: 90%;
+        width: 200px;
+        height: 200px;
+    }
+
+    .news-card * {
+        font-size: 0.75em;
     }
 }

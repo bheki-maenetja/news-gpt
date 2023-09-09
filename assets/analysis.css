@@ -194,6 +194,10 @@ To find out more about styling go to https://dash.plotly.com/external-resources
         width: 50%;
     }
 
+    .article-summariser {
+        padding: 1em;
+    }
+
     .headline-bot-params {
         padding: 2em 2em 4em 2em;
         background-color: var(--lightblue);
@@ -230,6 +234,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 @media screen and (max-width: 860px) {
     .newsfeed-nlp {
         flex-direction: column;
+        height: 750px;
     }
 
     .article-summariser, .headline-bot {
@@ -242,7 +247,9 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     }
 
     .headline-bot-query {
+        padding: 0em 1em;
         border-radius: 0em;
+        font-size: 0.75em;
         box-shadow: none;
     }
 
@@ -251,20 +258,33 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     }
 
     .headline-bot-btn {
+        width: 15%;
         border-radius: 0em;
-        box-shadow: none
+        font-size: 1.5em;
+        box-shadow: none;
+    }
+
+    .hl-bot-message-content.bot, .hl-bot-message-content.user {
+        font-size: 0.75em;
     }
 
     .article-summariser-params {
-        height: 5em;
-        padding: 0.25em;
+        height: fit-content;
+        padding: 1em;
+        align-content: space-evenly;
     }
 
     #summary-method-select {
-        width: 30%;
+        font-size: 0.75em;
+        margin-bottom: 1em;
     }
 
     .article-summariser-btn {
-        width: 18%;
+        font-size: 0.75em;
+    }
+
+    .article-summariser-output-content {
+        padding: 1em;
+        font-size: 0.75em;
     }
 }
