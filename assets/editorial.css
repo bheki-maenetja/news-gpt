@@ -105,3 +105,28 @@ To find out more about styling go to https://dash.plotly.com/external-resources
         padding: 1em 2em;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .editorial-btn {
+        width: 100%;
+        margin-bottom: 0.5em;
+    }
+
+    .editorial-output {
+        padding: 0.5em;
+    }
+
+    .editorial-output-content {
+        padding: 1em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .editorial-slider * {
+        font-size: 0.8em;
+    }
+
+    .editorial-params {
+        padding: 0.5em 1em;
+    }
+}
