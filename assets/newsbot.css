@@ -102,3 +102,30 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     background-color: var(--gray);
     color: var(--lightgray);
 }
+
+/* Media Queries */
+@media screen and (max-width: 650px) {
+    .newsbot-params {
+        padding: 2em 1em 3em 1em;
+    }
+
+    .newsbot-query {
+        padding: 0.5em 1em;
+    }
+
+    .newsbot-btn {
+        width: 15%;
+    }
+}
+
+@media screen and (max-width: 600px) and (max-height: 800px) {
+    .newsbot-message-content.bot, .newsbot-message-content.user {
+        font-size: 0.75em;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .newsbot-message-content.bot, .newsbot-message-content.user {
+        font-size: 0.75em;
+    }
+}
