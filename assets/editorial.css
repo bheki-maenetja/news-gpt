@@ -103,6 +103,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 @media screen and (max-width: 1050px) {
     .editorial-params {
         padding: 1em 2em;
+        background-color: var(--lightgray);
     }
 }
 

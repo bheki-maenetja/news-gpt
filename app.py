@@ -1,5 +1,5 @@
 # Third-Party Imports
-from dash import Dash, html, dcc, no_update, ctx
+from dash import Dash, html, dcc, ctx
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 
@@ -363,4 +363,4 @@ def newsbot_system_message_handler(query, current_state):
 
 # Running server
 if __name__ == "__main__":
-    app.run_server(debug=False, host="0.0.0.0")
+    app.run_server(debug=True, host="0.0.0.0")
