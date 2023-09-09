@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 
 # Standard Library Imports
 # Local Imports
-from user_interface.main_nav import main_nav
+from user_interface.main_nav import get_main_nav
 from user_interface.newsfeed import get_newsfeed, get_news_cards
 from user_interface.analysis import get_analysis, headline_bot_message
 from user_interface.keywords import get_keywords
@@ -43,7 +43,7 @@ app.layout = html.Div(
     children=[
         dcc.Store(id="headline-bot-query-temp"),
         dcc.Store(id="newsbot-query-temp"),
-        main_nav,
+        get_main_nav(),
         html.Div(
             id="section-container", 
             className="section-container",
@@ -363,4 +363,4 @@ def newsbot_system_message_handler(query, current_state):
 
 # Running server
 if __name__ == "__main__":
-    app.run_server(debug=True, host="0.0.0.0")
+    app.run_server(debug=False, host="0.0.0.0")
