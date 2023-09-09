@@ -13,11 +13,11 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 }
 
 /* Tabs */
-.main-tabs {
+#main-tabs {
     border: none;
 }
 
-.main-tabs .main-tab {
+#main-tabs .main-tab {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,29 +29,29 @@ To find out more about styling go to https://dash.plotly.com/external-resources
     text-align: center;
 }
 
-.main-tabs .main-tab * {
+#main-tabs .main-tab * {
     font-family: 'Sarala', sans-serif;
     text-align: center;
 }
 
-.main-tabs .main-tab-selected {
+#main-tabs .main-tab-selected {
     background-color: var(--pale);
     color: var(--darkblue);
 }
 
-.main-tabs .main-tab:last-child {
+#main-tabs .main-tab:last-child {
     border: none;
 }
 
-.main-tabs .main-tab-selected:last-child {
+#main-tabs .main-tab-selected:last-child {
     border: none;
 }
 
-.main-tabs .main-tab-selected:hover {
+#main-tabs .main-tab-selected:hover {
     background-color: var(--pale);
 }
 
-.main-tabs .main-tab:not(.main-tab-selected):hover {
+#main-tabs .main-tab:not(.main-tab-selected):hover {
     background-color: var(--lightgray);
     color: var(--pale);
 }
@@ -71,13 +71,13 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 
 /* Media Queries */
 @media screen and (max-width: 1260px) {
-    .main-tabs .main-tab {
+    #main-tabs .main-tab {
         padding: 1.5em 2.935em;
     }
 }
 
 @media screen and (max-width: 950px) {
-    .main-tabs .main-tab {
+    #main-tabs .main-tab {
         padding: 1.5em 1.725em;
     }
 }
@@ -90,7 +90,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
         text-align: center;
     }
 
-    .main-tabs .main-tab {
+    #main-tabs .main-tab {
         padding: 1.5em 1em;
     }
 
@@ -100,7 +100,7 @@ To find out more about styling go to https://dash.plotly.com/external-resources
 }
 
 @media screen and (max-width: 600px) {
-    .main-tabs .main-tab {
+    #main-tabs .main-tab {
         padding: 1em 0.5em;
     }
 
