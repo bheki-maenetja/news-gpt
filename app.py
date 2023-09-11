@@ -3,7 +3,6 @@ from dash import Dash, html, dcc, ctx
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 
-# Standard Library Imports
 # Local Imports
 from user_interface.main_nav import get_main_nav
 from user_interface.newsfeed import get_newsfeed, get_news_cards
@@ -363,4 +362,4 @@ def newsbot_system_message_handler(query, current_state):
 
 # Running server
 if __name__ == "__main__":
-    app.run_server(debug=True, host="0.0.0.0")
+    app.run_server(debug=False, host="0.0.0.0")
