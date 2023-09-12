@@ -49,7 +49,10 @@ def save_articles(articles):
     except Exception as e:
         print(f"'save_articles' -> Something  went wrong {e}")
 
-def load_articles():
+def load_articles(refresh=False):
+    if refresh:
+        get_articles()
+
     try:
         return pd.read_json("state/articles.json", orient="records")
     except Exception as e:
