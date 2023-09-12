@@ -117,7 +117,10 @@ def gpt_call(prompt):
         summary = res.choices[0].message.content
         return summary
     except Exception as e:
-        return f"Error: gpt_call -> {e}"
+        err_str = f"Error: gpt_call -> {e}"
+        if "rate limit" in err_str.lower():
+            err_str = f"Error: gpt_call -> Rate limit reached. Please try again."
+        return err_str
 
 # Summarisation
 def summarise_headlines(headlines, sum_format):
