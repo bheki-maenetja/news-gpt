@@ -32,8 +32,6 @@ server = app.server
 INITIAL_HL_BOT_MESSAGE = "Ask me anything and I'll use today's headlines to find the answer."
 INITIAL_NEWSBOT_MESSAGE = "Ask me anything and I'll search over 2 million articles from 80 000 sources to find the answer."
 
-get_articles()
-
 # UI Layout
 ## Main App Layout
 app.layout = html.Div(
@@ -47,7 +45,7 @@ app.layout = html.Div(
             id="section-container", 
             className="section-container",
             children=[
-                get_newsfeed(load_articles())
+                get_newsfeed(load_articles(True))
             ]
         ),
         html.Div(id='reload-handler-0', style={"display": "hidden"}),
