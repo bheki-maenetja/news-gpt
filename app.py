@@ -45,7 +45,7 @@ app.layout = html.Div(
             id="section-container", 
             className="section-container",
             children=[
-                get_newsfeed(load_articles(True))
+                get_newsfeed(load_articles())
             ]
         ),
         html.Div(id='reload-handler-0', style={"display": "hidden"}),
@@ -141,7 +141,6 @@ def main_tabs_handler(value): return None
     Input("category-select", "value"),
     Input("country-select", "value"),
     supress_callback_exceptions=True,
-    prevent_initial_call=True,
 )
 def category_country_handler(category, country):
     get_articles(category, country)
